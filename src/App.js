@@ -19,13 +19,13 @@ const App = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg>
               </div>
-              <h1 className="text-xl font-bold text-gray-800">Tax<span className="text-blue-600">Pro</span></h1>
+              <h1 className="text-xl font-bold text-gray-800">myKar<span className="text-blue-600">Sahayak</span></h1>
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="#home" className="text-blue-600 font-medium">Home</a>
-              <a href="#pricing" className="text-gray-600 hover:text-blue-600 transition">Pricing</a>
-              <a href="#features" className="text-gray-600 hover:text-blue-600 transition">Features</a>
-              <a href="#team" className="text-gray-600 hover:text-blue-600 transition">Team</a>
+              <a href="#services" className="text-gray-600 hover:text-blue-600 transition">Services</a>
+              <a href="#about" className="text-gray-600 hover:text-blue-600 transition">About</a>
+              <a href="#resources" className="text-gray-600 hover:text-blue-600 transition">Resources</a>
               <a href="#contact" className="text-gray-600 hover:text-blue-600 transition">Contact</a>
             </nav>
             <button className="md:hidden focus:outline-none">
@@ -42,11 +42,11 @@ const App = () => {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-10 md:mb-0">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Simplify Your <span className="text-blue-600">Tax Compliance</span></h1>
-              <p className="text-lg text-gray-600 mb-8">Professional tax filing and compliance services for individuals and businesses. Let our experts handle your ITR, GST, TDS filings while you focus on what matters most.</p>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Unleash the Power of Your <span className="text-blue-600">Savings</span></h1>
+              <p className="text-lg text-gray-600 mb-8">Your Ultimate Tax Filling Companion! Step into the Realm of Tax Magic with myKarSahayak, where we weave spells to optimize your savings and efficiency.</p>
               <div className="flex space-x-4">
-                <a href="#pricing" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition shadow-md">View Plans</a>
-                <a href="#contact" className="border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition">Contact Us</a>
+                <a href="#services" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition shadow-md">Our Services</a>
+                <a href="#contact" className="border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition">Get Started</a>
               </div>
             </div>
             <div className="md:w-1/2">
@@ -60,20 +60,16 @@ const App = () => {
       <section id="pricing" className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Choose the plan that fits your needs. All plans include expert support and timely filing.</p>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Services</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Professional tax filing and compliance services tailored to your needs.</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Basic Plan */}
+            {/* ITR Filing */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition">
               <div className="px-8 py-6 border-b border-gray-100">
-                <h3 className="text-xl font-semibold text-gray-800">Basic</h3>
-                <p className="text-gray-600 mt-2">For individuals with simple tax needs</p>
-                <div className="mt-6">
-                  <span className="text-4xl font-bold text-blue-600">₹999</span>
-                  <span className="text-gray-500">/year</span>
-                </div>
+                <h3 className="text-xl font-semibold text-gray-800">ITR e-filing</h3>
+                <p className="text-gray-600 mt-2">For individuals and businesses</p>
               </div>
               <div className="px-8 py-6">
                 <ul className="space-y-4">
@@ -81,49 +77,33 @@ const App = () => {
                     <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>ITR Filing (Salary Income)</span>
+                    <span>Salary Income Filing</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>Form 16 Assistance</span>
+                    <span>Business Income Filing</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>Tax Saving Advice</span>
-                  </li>
-                  <li className="flex items-start text-gray-400">
-                    <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    <span>GST Filing</span>
-                  </li>
-                  <li className="flex items-start text-gray-400">
-                    <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    <span>TDS Compliance</span>
+                    <span>Capital Gains Filing</span>
                   </li>
                 </ul>
-                <button className="mt-8 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition">Get Started</button>
+                <a href="#contact" className="mt-8 block w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition text-center">Get Started</a>
               </div>
             </div>
             
-            {/* Standard Plan */}
+            {/* GST Filing */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-blue-600 transform scale-105 z-10">
               <div className="bg-blue-600 text-white text-center py-2">
                 <p className="font-medium">Most Popular</p>
               </div>
               <div className="px-8 py-6 border-b border-gray-100">
-                <h3 className="text-xl font-semibold text-gray-800">Standard</h3>
-                <p className="text-gray-600 mt-2">For freelancers & small businesses</p>
-                <div className="mt-6">
-                  <span className="text-4xl font-bold text-blue-600">₹4,999</span>
-                  <span className="text-gray-500">/year</span>
-                </div>
+                <h3 className="text-xl font-semibold text-gray-800">GST e-filing</h3>
+                <p className="text-gray-600 mt-2">For businesses of all sizes</p>
               </div>
               <div className="px-8 py-6">
                 <ul className="space-y-4">
@@ -131,46 +111,30 @@ const App = () => {
                     <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>Everything in Basic</span>
+                    <span>GSTR-1 Filing</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>GST Return Filing (3B)</span>
+                    <span>GSTR-3B Filing</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>Quarterly TDS Returns</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Business ITR Filing</span>
-                  </li>
-                  <li className="flex items-start text-gray-400">
-                    <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    <span>Annual GST Compliance</span>
+                    <span>Annual Returns</span>
                   </li>
                 </ul>
-                <button className="mt-8 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition">Get Started</button>
+                <a href="#contact" className="mt-8 block w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition text-center">Get Started</a>
               </div>
             </div>
             
-            {/* Premium Plan */}
+            {/* TDS Compliance */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition">
               <div className="px-8 py-6 border-b border-gray-100">
-                <h3 className="text-xl font-semibold text-gray-800">Premium</h3>
-                <p className="text-gray-600 mt-2">For growing businesses with complex needs</p>
-                <div className="mt-6">
-                  <span className="text-4xl font-bold text-blue-600">₹9,999</span>
-                  <span className="text-gray-500">/year</span>
-                </div>
+                <h3 className="text-xl font-semibold text-gray-800">TDS Compliances</h3>
+                <p className="text-gray-600 mt-2">For businesses and employers</p>
               </div>
               <div className="px-8 py-6">
                 <ul className="space-y-4">
@@ -178,34 +142,22 @@ const App = () => {
                     <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>Everything in Standard</span>
+                    <span>Quarterly Returns</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>Full GST Compliance</span>
+                    <span>Form 24Q Filing</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>Annual TDS Compliance</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Dedicated CA Support</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Audit Support</span>
+                    <span>Annual Compliance</span>
                   </li>
                 </ul>
-                <button className="mt-8 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition">Get Started</button>
+                <a href="#contact" className="mt-8 block w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition text-center">Get Started</a>
               </div>
             </div>
           </div>
@@ -216,8 +168,8 @@ const App = () => {
       <section id="features" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Why Choose Our Services</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">We make tax compliance simple, efficient, and stress-free for you.</p>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Who We Are</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Welcome to myKarSahayak, where tax filling meets innovation and excitement! We are not your average tax consultants; we are your financial superheroes ready to optimize your savings and efficiency like never before.</p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -228,7 +180,7 @@ const App = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-3">Expert Support</h3>
-              <p className="text-gray-600">Our team of CAs and tax experts ensure accurate and optimized filings.</p>
+              <p className="text-gray-600">Our team of Tax Wizards is here to guide you through the mystical world of tax filling.</p>
             </div>
             
             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition text-center">
@@ -238,7 +190,7 @@ const App = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-3">Timely Filing</h3>
-              <p className="text-gray-600">Never miss a deadline with our proactive reminders and filings.</p>
+              <p className="text-gray-600">We ensure a journey filled with enchantment and financial prosperity.</p>
             </div>
             
             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition text-center">
@@ -248,7 +200,7 @@ const App = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-3">100% Digital</h3>
-              <p className="text-gray-600">Complete your compliance online without any paperwork.</p>
+              <p className="text-gray-600">Embrace the magic of seamless tax processes with our digital solutions.</p>
             </div>
             
             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition text-center">
@@ -258,7 +210,7 @@ const App = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-3">Tax Savings</h3>
-              <p className="text-gray-600">We identify all eligible deductions to minimize your tax liability.</p>
+              <p className="text-gray-600">Let myKarSahayak be your trusted ally in the realm of financial wizardry.</p>
             </div>
           </div>
         </div>
@@ -273,19 +225,11 @@ const App = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-              <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member" className="w-full h-64 object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-1">Priya Sharma</h3>
-                <p className="text-blue-600 mb-3">Chartered Accountant</p>
-                <p className="text-gray-600">Specializes in GST compliance and business taxation with 10+ years experience.</p>
-              </div>
-            </div>
             
             <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
               <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member" className="w-full h-64 object-cover" />
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-1">Rahul Patel</h3>
+                <h3 className="text-xl font-semibold mb-1">Nitish Sharma</h3>
                 <p className="text-blue-600 mb-3">Tax Consultant</p>
                 <p className="text-gray-600">Expert in individual taxation, NRI taxation, and tax planning strategies.</p>
               </div>
@@ -294,18 +238,9 @@ const App = () => {
             <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
               <img src="https://images.unsplash.com/photo-1573497019706-4e0f8f6b6f8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member" className="w-full h-64 object-cover" />
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-1">Ananya Gupta</h3>
-                <p className="text-blue-600 mb-3">Legal Expert</p>
-                <p className="text-gray-600">Focuses on corporate compliance, TDS, and regulatory filings.</p>
-              </div>
-            </div>
-            
-            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-              <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member" className="w-full h-64 object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-1">Arjun Singh</h3>
-                <p className="text-blue-600 mb-3">ITR Specialist</p>
-                <p className="text-gray-600">Handles complex ITR filings, capital gains, and audit cases.</p>
+                <h3 className="text-xl font-semibold mb-1">Amit Jha</h3>
+                <p className="text-blue-600 mb-3">Tax Consultant</p>
+                <p className="text-gray-600">Expert in individual taxation, NRI taxation, and tax planning strategies.</p>
               </div>
             </div>
           </div>
@@ -324,7 +259,7 @@ const App = () => {
             {[
               {
                 question: "What documents do I need for ITR filing?",
-                answer: "Typically you'll need Form 16, bank statements, investment proofs (like PPF, ELSS), home loan documents (if applicable), and capital gains statements (if any). For business income, you'll need profit/loss statements and balance sheets."
+                answer: "You'll need Form 16, bank statements, investment proofs (like PPF, ELSS), home loan documents (if applicable), and capital gains statements (if any). For business income, you'll need profit/loss statements and balance sheets."
               },
               {
                 question: "How long does GST registration take?",
@@ -386,7 +321,7 @@ const App = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Phone</h4>
-                    <p className="opacity-90">+91 98765 43210</p>
+                    <p className="opacity-90">033 3595 6974</p>
                   </div>
                 </div>
                 
@@ -398,7 +333,7 @@ const App = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Email</h4>
-                    <p className="opacity-90">support@taxpro.com</p>
+                    <p className="opacity-90">info@myks.in</p>
                   </div>
                 </div>
                 
@@ -410,7 +345,7 @@ const App = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">WhatsApp</h4>
-                    <p className="opacity-90">+91 98765 43210</p>
+                    <p className="opacity-90">+91 76058 43136</p>
                   </div>
                 </div>
               </div>
@@ -480,7 +415,7 @@ const App = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                   </svg>
                 </div>
-                <h1 className="text-xl font-bold">Tax<span className="text-blue-400">Pro</span></h1>
+                <h1 className="text-xl font-bold">myKar<span className="text-blue-400">Sahayak</span></h1>
               </div>
               <p className="text-gray-400 mb-4">Simplifying tax compliance for individuals and businesses with expert services.</p>
               <div className="flex space-x-4">
@@ -510,11 +445,11 @@ const App = () => {
             <div>
               <h3 className="text-lg font-semibold mb-4">Services</h3>
               <ul className="space-y-2">
-                <li><a href={() => false} className="text-gray-400 hover:text-white transition">Income Tax Filing</a></li>
-                <li><a href={() => false} className="text-gray-400 hover:text-white transition">GST Registration & Filing</a></li>
-                <li><a href={() => false} className="text-gray-400 hover:text-white transition">TDS/TCS Compliance</a></li>
-                <li><a href={() => false} className="text-gray-400 hover:text-white transition">Tax Planning</a></li>
-                <li><a href={() => false} className="text-gray-400 hover:text-white transition">Business Compliance</a></li>
+                <li><a href="#services" className="text-gray-400 hover:text-white transition">ITR e-filing</a></li>
+                <li><a href="#services" className="text-gray-400 hover:text-white transition">GST e-filing</a></li>
+                <li><a href="#services" className="text-gray-400 hover:text-white transition">TDS Compliances</a></li>
+                <li><a href="#services" className="text-gray-400 hover:text-white transition">Miscellaneous Business Services</a></li>
+                <li><a href="#resources" className="text-gray-400 hover:text-white transition">Resources</a></li>
               </ul>
             </div>
             
@@ -541,7 +476,7 @@ const App = () => {
           </div>
           
           <div className="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 mb-4 md:mb-0">© 2023 TaxPro. All rights reserved.</p>
+            <p className="text-gray-400 mb-4 md:mb-0">© 2023 myKarSahayak. All rights reserved.</p>
             <div className="flex space-x-6">
               <a href={() => false} className="text-gray-400 hover:text-white transition">Privacy</a>
               <a href={() => false} className="text-gray-400 hover:text-white transition">Terms</a>
