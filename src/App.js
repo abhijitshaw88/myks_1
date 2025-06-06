@@ -1,26 +1,31 @@
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
-import Hero from './components/home/Hero';
+import Footer from './components/layout/Footer';
+import Home from './components/home/Home';
 import Services from './components/services/Services';
-import Features from './components/home/Features';
-import Team from './components/team/Team';
-import Testimonials from './components/home/Testimonials';
-import FAQ from './components/faq/FAQ';
+import GSTServices from './components/services/GSTServices';
+import TDSServices from './components/services/TDSServices';
+import ITRServices from './components/services/ITRServices';
 import Contact from './components/contact/Contact';
 
-const App = () => {
-  
+function App() {
   return (
-    <div className="font-sans bg-gray-50">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <Hero />
-      <Services />
-      <Features />
-      <Team />
-      <Testimonials />
-      <FAQ />
-      <Contact />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/gst" element={<GSTServices />} />
+          <Route path="/services/tds" element={<TDSServices />} />
+          <Route path="/services/itr" element={<ITRServices />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </main>
+      <Footer />
     </div>
   );
-};
+}
 
 export default App;
