@@ -67,7 +67,6 @@ export const ServiceSelector = () => {
 };
 
 const TDSServices = () => {
-  const navigate = useNavigate();
   const services = [
     { key: 'tds', label: 'TDS', path: '/services/tds' },
     { key: 'itr', label: 'ITR', path: '/services/itr' },

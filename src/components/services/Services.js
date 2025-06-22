@@ -1,18 +1,3 @@
-import React, { useState, useRef, useEffect } from 'react';
-import ITRServices from './ITRServices';
-import GSTServices from './GSTServices';
-import TDSServices from './TDSServices';
-import Team from '../team/Team';
-import Testimonials from '../home/Testimonials';
-import { ServiceSelector } from './TDSServices';
-
-const TABS = [
-  { key: 'itr', label: 'Income Tax (ITR)' },
-  { key: 'gst', label: 'GST' },
-  { key: 'tds', label: 'TDS' },
-  { key: 'other', label: 'Other Services' }
-];
-
 const Services = () => {
   return (
     <section id="services" className="py-12 bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen">
