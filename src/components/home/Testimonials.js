@@ -40,10 +40,22 @@ const Testimonials = () => {
           <h2 className="text-3xl font-bold text-gray-800 mb-4">What Our Clients Say</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">Don't just take our word for it. Here's what our clients have to say about our services.</p>
         </div>
-        
+        <div className="flex justify-center mb-12 animate-fade-in-up">
+          <div className="w-full max-w-xs">
+            <svg viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-44">
+              <ellipse cx="150" cy="90" rx="140" ry="70" fill="#E0E7FF"/>
+              <circle cx="90" cy="90" r="36" fill="#6366F1"/>
+              <circle cx="210" cy="90" r="36" fill="#6366F1"/>
+              <ellipse cx="90" cy="100" rx="16" ry="8" fill="#fff"/>
+              <ellipse cx="210" cy="100" rx="16" ry="8" fill="#fff"/>
+              <rect x="120" y="120" width="60" height="16" rx="8" fill="#F59E42"/>
+              <text x="150" y="135" textAnchor="middle" fontSize="16" fill="#fff" fontWeight="bold">Feedback</text>
+            </svg>
+          </div>
+        </div>
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition">
+            <div key={index} className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition animate-fade-in">
               <div className="flex mb-4">
                 {renderStars(testimonial.rating)}
               </div>

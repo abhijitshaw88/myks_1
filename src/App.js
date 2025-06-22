@@ -8,6 +8,7 @@ import GSTServices from './components/services/GSTServices';
 import TDSServices from './components/services/TDSServices';
 import ITRServices from './components/services/ITRServices';
 import Contact from './components/contact/Contact';
+import Team from './components/team/Team';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/services/tds" element={<TDSServices />} />
           <Route path="/services/itr" element={<ITRServices />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/team" element={<Team/>} />
         </Routes>
       </main>
       <Footer />

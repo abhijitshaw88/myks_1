@@ -31,10 +31,21 @@ const Team = () => {
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Expert Team</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">Meet our team of experienced tax professionals dedicated to providing the best service.</p>
         </div>
-        
+        <div className="flex justify-center mb-12 animate-fade-in-up">
+          <div className="w-full max-w-xs">
+            <svg viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-44">
+              <ellipse cx="150" cy="150" rx="120" ry="20" fill="#E0E7FF"/>
+              <circle cx="90" cy="90" r="36" fill="#6366F1"/>
+              <circle cx="210" cy="90" r="36" fill="#6366F1"/>
+              <circle cx="150" cy="70" r="40" fill="#A5B4FC"/>
+              <rect x="110" y="110" width="80" height="24" rx="12" fill="#F59E42"/>
+              <text x="150" y="128" textAnchor="middle" fontSize="16" fill="#fff" fontWeight="bold">Team</text>
+            </svg>
+          </div>
+        </div>
         <div className="grid md:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
+            <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition animate-fade-in">
               <div className="relative h-64">
                 <img 
                   src={member.image} 
