@@ -67,14 +67,6 @@ export const ServiceSelector = () => {
 };
 
 const TDSServices = () => {
-  const services = [
-    { key: 'tds', label: 'TDS', path: '/services/tds' },
-    { key: 'itr', label: 'ITR', path: '/services/itr' },
-    { key: 'gst', label: 'GST', path: '/services/gst' },
-    { key: 'other', label: 'Other', path: '/services/other' },
-  ];
-  const current = 'tds';
-
   const tdsPlans = [
     {
       title: 'TDS Return Filing - Basic',

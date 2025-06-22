@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isDropdownHovered, setIsDropdownHovered] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
@@ -38,18 +37,6 @@ const Header = () => {
     navigate(path);
     setIsMenuOpen(false);
     setIsServicesOpen(false);
-  };
-
-  // Dropdown hover/click logic
-  const handleDropdownEnter = () => {
-    setIsDropdownHovered(true);
-    setIsServicesOpen(true);
-  };
-  const handleDropdownLeave = () => {
-    setIsDropdownHovered(false);
-    setTimeout(() => {
-      if (!isDropdownHovered) setIsServicesOpen(false);
-    }, 100);
   };
 
   return (

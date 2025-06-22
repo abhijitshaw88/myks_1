@@ -1,3 +1,5 @@
+import { ServiceSelector } from './TDSServices';
+
 const Services = () => {
   return (
     <section id="services" className="py-12 bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen">
