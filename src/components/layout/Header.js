@@ -133,6 +133,13 @@ const Header = () => {
             </div>
           </div>
         )}
+
+        {/* Add moving banner above the header */}
+        <div className="w-full bg-gradient-to-r from-gold to-yellow-400 dark:from-gold dark:to-yellow-500 text-navy dark:text-navy py-2 overflow-hidden shadow animate-fade-in">
+          <div className="whitespace-nowrap animate-marquee text-center font-semibold text-sm banner-text-shadow hover:paused">
+            📅 Get ready to file your ITR quickly and accurately! File your return for the financial year ending 31st March 2025 (Assessment Year 2025–26). e-Filing will be available soon
+          </div>
+        </div>
       </div>
     </header>
   );
