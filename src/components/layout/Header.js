@@ -35,13 +35,20 @@ const serviceOptions = [
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isDropdownHovered, setIsDropdownHovered] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
+  const buttonRef = useRef(null);
 
   // Close dropdown on click outside
   useEffect(() => {
     function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target)
+      ) {
         setIsServicesOpen(false);
       }
     }
@@ -55,6 +62,7 @@ const Header = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    setIsServicesOpen(false);
   };
 
   const handleNavigation = (path) => {
@@ -63,9 +71,17 @@ const Header = () => {
     setIsServicesOpen(false);
   };
 
-  // Dropdown hover fix: keep open if mouse is over button or dropdown
-  const handleDropdownEnter = () => setIsServicesOpen(true);
-  const handleDropdownLeave = () => setIsServicesOpen(false);
+  // Dropdown hover/click logic
+  const handleDropdownEnter = () => {
+    setIsDropdownHovered(true);
+    setIsServicesOpen(true);
+  };
+  const handleDropdownLeave = () => {
+    setIsDropdownHovered(false);
+    setTimeout(() => {
+      if (!isDropdownHovered) setIsServicesOpen(false);
+    }, 100);
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -88,26 +104,29 @@ const Header = () => {
               ref={dropdownRef}
             >
               <button
+                ref={buttonRef}
                 className="text-gray-600 hover:text-blue-600 font-medium flex items-center transition focus:outline-none"
                 aria-haspopup="true"
                 aria-expanded={isServicesOpen}
                 onClick={() => setIsServicesOpen((v) => !v)}
                 type="button"
+                tabIndex={0}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setIsServicesOpen(v => !v); }}
               >
                 Services
-                <svg className="ml-1 h-4 w-4 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className={`ml-1 h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               <div
-                className={`absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 transition-all duration-300 origin-top animate-fade-in-up ${isServicesOpen ? 'pointer-events-auto opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-95'}`}
-                style={{ zIndex: 100 }}
+                className={`absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 transition-all duration-300 origin-top z-50 ${isServicesOpen ? 'pointer-events-auto opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-95'}`}
               >
                 {serviceOptions.map((opt) => (
                   <button
                     key={opt.path}
                     onClick={() => handleNavigation(opt.path)}
                     className="w-full text-left px-6 py-3 hover:bg-blue-50 transition flex items-center gap-3 text-base font-medium"
+                    tabIndex={0}
                   >
                     {opt.icon} {opt.label}
                   </button>
@@ -134,51 +153,59 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 bg-white rounded-lg shadow-lg p-4 animate-fade-in-down">
-            <nav className="flex flex-col space-y-4">
-              <button 
-                onClick={() => handleNavigation('/')} 
-                className="text-left px-4 py-2 text-blue-600 font-medium hover:bg-blue-50 rounded-lg transition"
-              >
-                Home
-              </button>
-              <div className="relative">
-                <button
-                  onClick={() => setIsServicesOpen((v) => !v)}
-                  className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium flex items-center w-full transition"
+          <div className="md:hidden fixed inset-0 z-40 flex justify-end">
+            <div className="absolute inset-0 bg-black bg-opacity-20 backdrop-blur-sm transition-opacity animate-fade-in" onClick={toggleMenu}></div>
+            <div className="relative mt-0 bg-white rounded-l-2xl shadow-2xl p-6 w-4/5 max-w-xs h-full animate-slide-in-right flex flex-col">
+              <nav className="flex flex-col space-y-4">
+                <button 
+                  onClick={() => handleNavigation('/')} 
+                  className="text-left px-4 py-2 text-blue-600 font-medium hover:bg-blue-50 rounded-lg transition"
                 >
-                  Services
-                  <svg className="ml-1 h-4 w-4 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                  Home
                 </button>
-                {isServicesOpen && (
-                  <div className="mt-2 bg-white rounded-xl shadow-lg border border-gray-100 py-2 animate-fade-in-down">
+                <div className="relative">
+                  <button
+                    onClick={() => setIsServicesOpen((v) => !v)}
+                    className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium flex items-center w-full transition"
+                    aria-expanded={isServicesOpen}
+                    aria-controls="mobile-services-dropdown"
+                  >
+                    Services
+                    <svg className={`ml-1 h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div
+                    id="mobile-services-dropdown"
+                    className={`overflow-hidden transition-all duration-300 ${isServicesOpen ? 'max-h-96 opacity-100 scale-100' : 'max-h-0 opacity-0 scale-95'} bg-white rounded-xl shadow-lg border border-gray-100 mt-2`}
+                    style={{ willChange: 'opacity, transform', pointerEvents: isServicesOpen ? 'auto' : 'none' }}
+                  >
                     {serviceOptions.map((opt) => (
                       <button
                         key={opt.path}
-                        onClick={() => handleNavigation(opt.path)}
-                        className="w-full text-left px-6 py-3 hover:bg-blue-50 transition flex items-center gap-3 text-base font-medium"
+                        onClick={() => { handleNavigation(opt.path); setIsServicesOpen(false); }}
+                        className={`w-full text-left px-6 py-3 flex items-center gap-3 text-base font-medium transition hover:bg-blue-50 rounded-lg ${window.location.pathname === opt.path ? 'bg-blue-100 text-blue-700' : ''}`}
+                        tabIndex={isServicesOpen ? 0 : -1}
                       >
                         {opt.icon} {opt.label}
                       </button>
                     ))}
                   </div>
-                )}
-              </div>
-              <button 
-                onClick={() => handleNavigation('/team')} 
-                className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition"
-              >
-                Team
-              </button>
-              <button 
-                onClick={() => handleNavigation('/contact')} 
-                className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition"
-              >
-                Contact
-              </button>
-            </nav>
+                </div>
+                <button 
+                  onClick={() => handleNavigation('/team')} 
+                  className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition"
+                >
+                  Team
+                </button>
+                <button 
+                  onClick={() => handleNavigation('/contact')} 
+                  className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition"
+                >
+                  Contact
+                </button>
+              </nav>
+            </div>
           </div>
         )}
       </div>

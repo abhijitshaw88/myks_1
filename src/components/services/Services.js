@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ITRServices from './ITRServices';
 import GSTServices from './GSTServices';
 import TDSServices from './TDSServices';
@@ -14,18 +14,42 @@ const TABS = [
 
 const Services = () => {
   const [activeTab, setActiveTab] = useState('itr');
+  const tabRefs = useRef({});
+  const pillRef = useRef(null);
+  const [pillStyle, setPillStyle] = useState({ left: 0, width: 0 });
+  const [ripple, setRipple] = useState({ show: false, x: 0, y: 0 });
+  const [bounceKey, setBounceKey] = useState(0);
+
+  useEffect(() => {
+    // Animate pill position and width
+    const node = tabRefs.current[activeTab];
+    if (node) {
+      setPillStyle({ left: node.offsetLeft, width: node.offsetWidth });
+      setBounceKey(prev => prev + 1); // trigger bounce
+    }
+  }, [activeTab]);
+
+  const handleTabClick = (tabKey, e) => {
+    // Ripple effect
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setRipple({ show: true, x, y, tabKey });
+    setTimeout(() => setRipple({ show: false, x: 0, y: 0 }), 400);
+    setActiveTab(tabKey);
+  };
 
   const renderTabContent = () => {
     switch (activeTab) {
       case 'itr':
-        return <div className="animate-fade-in"><ITRServices /></div>;
+        return <div key="itr" className="animate-fade-in-up"><ITRServices /></div>;
       case 'gst':
-        return <div className="animate-fade-in"><GSTServices /></div>;
+        return <div key="gst" className="animate-fade-in-up"><GSTServices /></div>;
       case 'tds':
-        return <div className="animate-fade-in"><TDSServices /></div>;
+        return <div key="tds" className="animate-fade-in-up"><TDSServices /></div>;
       case 'other':
         return (
-          <div className="py-20 bg-gray-50 animate-fade-in">
+          <div className="py-20 bg-gray-50 animate-fade-in-up">
             <div className="container mx-auto px-6">
               <div className="text-center mb-16">
                 <h1 className="text-4xl font-bold text-gray-800 mb-4">Other Services</h1>
@@ -73,9 +97,9 @@ const Services = () => {
           </div>
         );
       case 'team':
-        return <div className="animate-fade-in"><Team /></div>;
+        return <div key="team" className="animate-fade-in-up"><Team /></div>;
       case 'testimonials':
-        return <div className="animate-fade-in"><Testimonials /></div>;
+        return <div key="testimonials" className="animate-fade-in-up"><Testimonials /></div>;
       default:
         return null;
     }
@@ -91,24 +115,48 @@ const Services = () => {
           </p>
         </div>
         <div className="flex justify-center mb-12">
-          <div className="inline-flex rounded-xl bg-white shadow-md overflow-hidden border border-gray-200 animate-fade-in-up">
+          <div className="relative inline-flex rounded-xl bg-white shadow-md overflow-hidden border border-gray-200 animate-fade-in-up">
+            {/* Animated pill/slider with bounce */}
+            <span
+              ref={pillRef}
+              key={bounceKey}
+              className="absolute top-0 left-0 h-full bg-blue-600 rounded-xl z-0 transition-all duration-300 animate-bounce-x"
+              style={{ left: pillStyle.left, width: pillStyle.width, transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)' }}
+              aria-hidden="true"
+            />
             {TABS.map((tab) => (
               <button
                 key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                className={`px-6 py-3 font-semibold text-lg focus:outline-none transition-all duration-200 ${
+                ref={el => tabRefs.current[tab.key] = el}
+                onClick={e => handleTabClick(tab.key, e)}
+                className={`relative px-6 py-3 font-semibold text-lg focus:outline-none transition-all duration-200 z-10 overflow-hidden ${
                   activeTab === tab.key
-                    ? 'bg-blue-600 text-white shadow-lg scale-105'
+                    ? 'text-white' // text on pill
                     : 'text-gray-700 hover:bg-blue-50'
                 }`}
                 style={{ minWidth: 150 }}
+                tabIndex={0}
+                aria-selected={activeTab === tab.key}
+                aria-controls={`tab-panel-${tab.key}`}
               >
                 {tab.label}
+                {/* Ripple effect */}
+                {ripple.show && ripple.tabKey === tab.key && (
+                  <span
+                    className="absolute pointer-events-none rounded-full bg-blue-200 opacity-60 animate-ripple"
+                    style={{
+                      left: ripple.x - 60,
+                      top: ripple.y - 60,
+                      width: 120,
+                      height: 120,
+                    }}
+                  />
+                )}
               </button>
             ))}
           </div>
         </div>
-        <div className="relative min-h-[400px]">
+        <div className="relative min-h-[400px] transition-all duration-500" id={`tab-panel-${activeTab}`}> 
           {renderTabContent()}
         </div>
       </div>
