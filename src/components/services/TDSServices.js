@@ -30,7 +30,7 @@ export const ServiceSelector = () => {
       <div className="sm:hidden flex justify-center">
         <div className="relative w-56">
           <button
-            className="w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 border-gray-200 bg-white shadow-md text-lg font-semibold text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+            className="w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 border-gray-200 bg-white dark:bg-navy shadow-md text-lg font-semibold text-navy dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
             onClick={e => {
               e.preventDefault();
               const menu = document.getElementById('service-mobile-menu');
@@ -44,7 +44,7 @@ export const ServiceSelector = () => {
           </button>
           <ul
             id="service-mobile-menu"
-            className="hidden absolute left-0 right-0 mt-2 bg-white rounded-xl shadow-lg border border-gray-100 z-20"
+            className="hidden absolute left-0 right-0 mt-2 bg-white dark:bg-navy rounded-xl shadow-lg border border-gray-100 dark:border-gold z-20"
             style={{ minWidth: '100%' }}
             tabIndex={-1}
             role="listbox"
@@ -53,7 +53,7 @@ export const ServiceSelector = () => {
               <li key={s.key} role="option" aria-selected={current === s.key}>
                 <button
                   onClick={() => { navigate(s.path); document.getElementById('service-mobile-menu').classList.add('hidden'); }}
-                  className={`w-full text-left px-6 py-3 flex items-center gap-3 text-base font-medium transition hover:bg-blue-50 rounded-xl ${current === s.key ? 'bg-blue-100 text-blue-700' : ''}`}
+                  className={`w-full text-left px-6 py-3 flex items-center gap-3 text-base font-medium transition hover:bg-blue-50 dark:hover:bg-navy rounded-xl ${current === s.key ? 'bg-blue-100 text-blue-700 dark:bg-gold dark:text-navy' : 'text-navy dark:text-white'}`}
                 >
                   {s.label}
                 </button>
