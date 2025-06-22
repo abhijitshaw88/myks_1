@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  @apply bg-white text-navy;
+}
+
+.dark html, .dark body {
+  @apply bg-navy text-white;
+}
+
 /* Modern fade and slide animations */
 @layer utilities {
   .animate-fade-in {
