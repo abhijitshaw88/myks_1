@@ -136,7 +136,6 @@ const Services = () => {
                 }`}
                 style={{ minWidth: 150 }}
                 tabIndex={0}
-                aria-selected={activeTab === tab.key}
                 aria-controls={`tab-panel-${tab.key}`}
               >
                 {tab.label}
