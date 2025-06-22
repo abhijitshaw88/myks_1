@@ -1,4 +1,5 @@
 import React from 'react';
+import { ServiceSelector } from './TDSServices';
 
 const ITRServices = () => {
   const itrPlans = [
@@ -89,8 +90,9 @@ const ITRServices = () => {
   ];
 
   return (
-    <div className="py-20 bg-gray-50">
+    <div className="py-8 bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="container mx-auto px-6">
+        <ServiceSelector />
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">Income Tax Services</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">

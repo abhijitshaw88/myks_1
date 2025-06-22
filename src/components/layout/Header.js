@@ -97,42 +97,7 @@ const Header = () => {
           </div>
           <nav className="hidden md:flex space-x-8 items-center">
             <Link to="/" className="text-blue-600 font-medium hover:underline underline-offset-4 transition">Home</Link>
-            <div
-              className="relative group"
-              onMouseEnter={handleDropdownEnter}
-              onMouseLeave={handleDropdownLeave}
-              ref={dropdownRef}
-            >
-              <button
-                ref={buttonRef}
-                className="text-gray-600 hover:text-blue-600 font-medium flex items-center transition focus:outline-none"
-                aria-haspopup="true"
-                aria-expanded={isServicesOpen}
-                onClick={() => setIsServicesOpen((v) => !v)}
-                type="button"
-                tabIndex={0}
-                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setIsServicesOpen(v => !v); }}
-              >
-                Services
-                <svg className={`ml-1 h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <div
-                className={`absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 transition-all duration-300 origin-top z-50 ${isServicesOpen ? 'pointer-events-auto opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-95'}`}
-              >
-                {serviceOptions.map((opt) => (
-                  <button
-                    key={opt.path}
-                    onClick={() => handleNavigation(opt.path)}
-                    className="w-full text-left px-6 py-3 hover:bg-blue-50 transition flex items-center gap-3 text-base font-medium"
-                    tabIndex={0}
-                  >
-                    {opt.icon} {opt.label}
-                  </button>
-                ))}
-              </div>
-            </div>
+            <Link to="/services" className="text-gray-600 hover:text-blue-600 font-medium transition">Services</Link>
             <Link to="/team" className="text-gray-600 hover:text-blue-600 font-medium transition">Team</Link>
             <Link to="/contact" className="text-gray-600 hover:text-blue-600 font-medium transition">Contact</Link>
           </nav>
@@ -163,35 +128,12 @@ const Header = () => {
                 >
                   Home
                 </button>
-                <div className="relative">
-                  <button
-                    onClick={() => setIsServicesOpen((v) => !v)}
-                    className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium flex items-center w-full transition"
-                    aria-expanded={isServicesOpen}
-                    aria-controls="mobile-services-dropdown"
-                  >
-                    Services
-                    <svg className={`ml-1 h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  <div
-                    id="mobile-services-dropdown"
-                    className={`overflow-hidden transition-all duration-300 ${isServicesOpen ? 'max-h-96 opacity-100 scale-100' : 'max-h-0 opacity-0 scale-95'} bg-white rounded-xl shadow-lg border border-gray-100 mt-2`}
-                    style={{ willChange: 'opacity, transform', pointerEvents: isServicesOpen ? 'auto' : 'none' }}
-                  >
-                    {serviceOptions.map((opt) => (
-                      <button
-                        key={opt.path}
-                        onClick={() => { handleNavigation(opt.path); setIsServicesOpen(false); }}
-                        className={`w-full text-left px-6 py-3 flex items-center gap-3 text-base font-medium transition hover:bg-blue-50 rounded-lg ${window.location.pathname === opt.path ? 'bg-blue-100 text-blue-700' : ''}`}
-                        tabIndex={isServicesOpen ? 0 : -1}
-                      >
-                        {opt.icon} {opt.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
+                <button 
+                  onClick={() => handleNavigation('/services')} 
+                  className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition"
+                >
+                  Services
+                </button>
                 <button 
                   onClick={() => handleNavigation('/team')} 
                   className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition"
