@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 html, body {
-  @apply bg-white text-navy;
+  @apply bg-white text-navy transition-colors duration-300;
 }
 
 .dark html, .dark body {
-  @apply bg-navy text-white;
+  @apply bg-navy text-white transition-colors duration-300;
 }
 
 /* Modern fade and slide animations */
@@ -58,3 +58,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Card and section backgrounds for theme */
+.card {
+  @apply bg-white dark:bg-navy border border-gray-100 dark:border-gold shadow-lg rounded-xl transition-colors duration-300;
+}
+.section {
+  @apply bg-blue-50 dark:bg-navy transition-colors duration-300;
+}
+
+/* Example usage:
+<div className="card p-8">...</div>
+<section className="section py-12">...</section>
+*/
