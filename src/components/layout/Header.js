@@ -59,7 +59,7 @@ const Header = () => {
               to="/partner-planning" 
               className="text-gray-600 hover:text-blue-600 font-medium transition"
             >
-              Partner Planning
+              Corporate tie-up
             </Link>
           </nav>
           <button 
@@ -111,7 +111,7 @@ const Header = () => {
                   onClick={() => handleNavigation('/partner-planning')} 
                   className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition"
                 >
-                  Partner Planning
+                  Corporate tie-up
                 </button>
               </nav>
             </div>

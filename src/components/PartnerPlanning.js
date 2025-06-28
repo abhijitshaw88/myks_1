@@ -3,9 +3,9 @@ const PartnerPlanning = () => {
     <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-700 min-h-screen">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-white mb-6">Partner Planning Services</h1>
+          <h1 className="text-5xl font-bold text-white mb-6">Corporate tie-up Services</h1>
           <p className="text-blue-100 max-w-3xl mx-auto text-xl leading-relaxed">
-            Ready to take your business to the next level? Our partner planning services offer customized solutions 
+            Ready to take your business to the next level? Our corporate tie-up services offer customized solutions 
             tailored to your specific needs. Get a personalized quote and start your journey towards financial success.
           </p>
         </div>
