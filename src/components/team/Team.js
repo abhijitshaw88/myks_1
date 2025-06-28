@@ -60,7 +60,7 @@ const Team = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-800 mb-6">Meet Our Expert Team at myKarSahayak</h2>
           <p className="text-gray-600 max-w-4xl mx-auto text-lg leading-relaxed">
-            At myKarSahayak, we take pride in being a trusted name in tax and financial services, backed by a highly qualified and dedicated team of professionals. Our team includes CA, CMA, CS finalists and certified financial experts, committed to delivering reliable, accurate, and timely services tailored to individual and business needs.
+            At myKarSahayak, we take pride in being a trusted name in tax and financial services, backed by a highly qualified and dedicated team of professionals. Our team includes certified financial experts, committed to delivering reliable, accurate, and timely services tailored to individual and business needs.
           </p>
         </div>
 
