@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 const Hero = () => {
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 overflow-hidden">
