@@ -17,10 +17,9 @@ const PartnerPlanning = () => {
               <div className="flex items-start space-x-4">
                 <div className="text-3xl">🎯</div>
                 <div>
-                  <h4 className="text-xl font-semibold text-white mb-2">Customized Solutions</h4>
+                  <h4 className="text-xl font-semibold text-white mb-2">Tailored Tax Solutions</h4>
                   <p className="text-blue-100">
-                    Every business is unique. We create tailored strategies that align with your specific goals, 
-                    industry requirements, and growth objectives.
+                    We offer customized tax services designed to align with each client's unique financial needs and business objectives.
                   </p>
                 </div>
               </div>
