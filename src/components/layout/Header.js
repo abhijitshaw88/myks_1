@@ -71,6 +71,12 @@ const Header = () => {
             <Link to="/services" className="text-gray-600 dark:text-white hover:text-blue-600 dark:hover:text-gold font-medium transition">Services</Link>
             <Link to="/team" className="text-gray-600 dark:text-white hover:text-blue-600 dark:hover:text-gold font-medium transition">Team</Link>
             <Link to="/contact" className="text-gray-600 dark:text-white hover:text-blue-600 dark:hover:text-gold font-medium transition">Contact</Link>
+            <Link 
+              to="/partner-planning" 
+              className="text-gray-600 dark:text-white hover:text-blue-600 dark:hover:text-gold font-medium transition"
+            >
+              Partner Planning
+            </Link>
           </nav>
           {/* Theme toggle */}
           <button
@@ -128,6 +134,12 @@ const Header = () => {
                   className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition"
                 >
                   Contact
+                </button>
+                <button 
+                  onClick={() => handleNavigation('/partner-planning')} 
+                  className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition"
+                >
+                  Partner Planning
                 </button>
               </nav>
             </div>

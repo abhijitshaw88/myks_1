@@ -7,6 +7,7 @@ import Services from './components/services/Services';
 import GSTServices from './components/services/GSTServices';
 import TDSServices from './components/services/TDSServices';
 import ITRServices from './components/services/ITRServices';
+import PartnerPlanning from './components/PartnerPlanning';
 import Contact from './components/contact/Contact';
 import Team from './components/team/Team';
 import NotFound from './components/NotFound';
@@ -46,6 +47,7 @@ function App() {
           <Route path="/services/tds" element={<TDSServices />} />
           <Route path="/services/itr" element={<ITRServices />} />
           <Route path="/services/other" element={<Services />} />
+          <Route path="/partner-planning" element={<PartnerPlanning />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/team" element={<Team/>} />
           <Route path="*" element={<NotFound />} />
