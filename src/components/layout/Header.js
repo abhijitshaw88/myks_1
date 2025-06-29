@@ -117,13 +117,6 @@ const Header = () => {
             </div>
           </div>
         )}
-
-        {/* Add moving banner above the header */}
-        <div className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 overflow-hidden shadow animate-fade-in">
-          <div className="whitespace-nowrap animate-marquee text-center font-semibold text-sm hover:paused">
-            📅 Now file your ITR at a click for FY 2024-25 (AY 2025-26). e-Filing available soon!
-          </div>
-        </div>
       </div>
     </header>
   );

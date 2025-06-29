@@ -1,9 +1,9 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/layout/Header';
+import Announcement from './components/Announcement';
 import Footer from './components/layout/Footer';
 import Home from './components/home/Home';
-import Services from './components/services/Services';
 import GSTServices from './components/services/GSTServices';
 import TDSServices from './components/services/TDSServices';
 import ITRServices from './components/services/ITRServices';
@@ -41,6 +41,7 @@ function App() {
         </a>
       </div>
       <Header />
+      <Announcement />
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
