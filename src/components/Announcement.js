@@ -33,26 +33,15 @@ const Announcement = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-4 shadow-lg overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-10 -left-10 w-20 h-20 bg-white opacity-10 rounded-full animate-pulse"></div>
-        <div className="absolute -bottom-10 -right-10 w-16 h-16 bg-white opacity-10 rounded-full animate-ping"></div>
-        <div className="absolute top-1/2 left-1/4 w-8 h-8 bg-white opacity-5 rounded-full animate-bounce"></div>
-        <div className="absolute top-1/3 right-1/3 w-12 h-12 bg-white opacity-5 rounded-full animate-spin"></div>
-      </div>
-
-      {/* Moving gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer"></div>
-
-      <div className="container mx-auto px-6 relative z-10">
+    <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 shadow-lg">
+      <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           <div className="flex-1 overflow-hidden">
-            <div className="flex items-center space-x-4 animate-slide-in">
+            <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-3">
-                <span className="text-2xl animate-bounce">{announcements[currentIndex].icon}</span>
+                <span className="text-2xl">{announcements[currentIndex].icon}</span>
                 <div className="overflow-hidden">
-                  <div className="animate-slide-up">
+                  <div className="transition-all duration-500 ease-in-out">
                     <span className="font-bold text-sm md:text-base block">
                       {announcements[currentIndex].text}
                     </span>
@@ -67,12 +56,12 @@ const Announcement = () => {
 
           {/* Call to action button */}
           <div className="flex items-center space-x-4">
-            <button className="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 animate-pulse">
+            <button className="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">
               File Now
             </button>
             <button
               onClick={() => setIsVisible(false)}
-              className="text-white/80 hover:text-white transition-colors duration-300 transform hover:scale-110"
+              className="text-white/80 hover:text-white transition-colors duration-300"
               aria-label="Close announcement"
             >
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -88,15 +77,12 @@ const Announcement = () => {
             <div
               key={index}
               className={`w-2 h-2 rounded-full transition-all duration-500 ${
-                index === currentIndex ? 'bg-white scale-125' : 'bg-white/40'
+                index === currentIndex ? 'bg-white' : 'bg-white/40'
               }`}
             />
           ))}
         </div>
       </div>
-
-      {/* Animated border */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 animate-pulse"></div>
     </div>
   );
 };
