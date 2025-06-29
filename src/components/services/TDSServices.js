@@ -117,61 +117,6 @@ const TDSServices = () => {
     "Business owners with contractual/commission payments"
   ];
 
-  const tdsPlans = [
-    {
-      title: 'TDS Return Filing - Basic',
-      price: '₹1,999/quarter',
-      description: 'Quarterly TDS return filing for small businesses',
-      features: [
-        'Form 24Q Filing (Salary)',
-        'Form 26Q Filing (Non-Salary)',
-        'TDS Payment Support',
-        'TDS Certificate Generation',
-        'Basic TDS Advisory',
-        'Return Filing Reminders'
-      ]
-    },
-    {
-      title: 'TDS Return Filing - Premium',
-      price: '₹2,999/quarter',
-      description: 'Comprehensive TDS return filing with additional services',
-      features: [
-        'Everything in Basic Plan',
-        'Form 27Q Filing (NRI)',
-        'TDS Reconciliation',
-        'Monthly TDS Reports',
-        'TDS Audit Support',
-        'Dedicated TDS Expert'
-      ]
-    },
-    {
-      title: 'TDS Compliance Package',
-      price: '₹9,999/year',
-      description: 'Complete TDS compliance solution',
-      features: [
-        'All TDS Return Filings',
-        'TDS Software License',
-        'TDS Training',
-        'Compliance Calendar',
-        'Regular TDS Advisory',
-        'Audit Support'
-      ]
-    },
-    {
-      title: 'TDS Assessment Support',
-      price: '₹4,999',
-      description: 'Support during TDS assessment',
-      features: [
-        'Assessment Preparation',
-        'Document Collection',
-        'Representation Support',
-        'Compliance Review',
-        'Expert Consultation',
-        'Follow-up Support'
-      ]
-    }
-  ];
-
   return (
     <div className="py-8 bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="container mx-auto px-6">
