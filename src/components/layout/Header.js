@@ -61,10 +61,10 @@ const Header = () => {
               </button>
               <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="py-2">
-                  <a href="/services/itr" className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">ITR Filing</a>
-                  <a href="/services/gst" className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">GST Services</a>
-                  <a href="/services/tds" className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">TDS/TCS Compliance</a>
-                  <a href="/services/notice" className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">Notice Handling</a>
+                  <Link to="/services/itr" className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">ITR Filing</Link>
+                  <Link to="/services/gst" className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">GST Services</Link>
+                  <Link to="/services/tds" className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">TDS/TCS Compliance</Link>
+                  <Link to="/services/notice" className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">Notice Handling</Link>
                 </div>
               </div>
             </div>
@@ -107,7 +107,7 @@ const Header = () => {
                   Home
                 </button>
                 <button 
-                  onClick={() => handleNavigation('/services')} 
+                  onClick={() => handleNavigation('/services/itr')} 
                   className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition"
                 >
                   Services

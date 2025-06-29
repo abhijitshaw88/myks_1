@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Features = () => {
   const features = [
     {
@@ -48,7 +50,7 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section id="services" className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Why Choose Us</h2>
@@ -66,12 +68,12 @@ const Features = () => {
               <h3 className="text-xl font-semibold text-gray-800 mb-4">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
               {feature.title === 'Tax Calculator' && (
-                <a 
-                  href="/tax-calculator" 
+                <Link 
+                  to="/tax-calculator" 
                   className="inline-block mt-4 text-green-600 hover:text-green-700 font-semibold transition"
                 >
                   Try Calculator →
-                </a>
+                </Link>
               )}
             </div>
           ))}

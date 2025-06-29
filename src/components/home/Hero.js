@@ -1,4 +1,13 @@
+import { Link } from 'react-router-dom';
+
 const Hero = () => {
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 overflow-hidden">
       {/* Animated Background Elements */}
@@ -32,18 +41,18 @@ const Hero = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <a 
-                href="#services" 
+              <button 
+                onClick={scrollToServices}
                 className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Explore Tax Services
-              </a>
-              <a 
-                href="/tax-calculator" 
-                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              </button>
+              <Link 
+                to="/tax-calculator" 
+                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-center"
               >
                 💰 Tax Calculator
-              </a>
+              </Link>
             </div>
             
             {/* Stats */}
