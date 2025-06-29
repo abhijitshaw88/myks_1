@@ -15,15 +15,19 @@ const Hero = () => {
           <div className="space-y-8">
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-800 mb-6 leading-tight">
-                Your Trusted Partner in
-                <span className="text-blue-600 block">Tax & Compliance</span>
+                Professional
+                <span className="text-blue-600 block">Tax Filing Services</span>
+                <span className="text-2xl text-gray-600 block mt-4">ITR • GST • TDS • Tax Planning</span>
               </h1>
             </div>
             
             <div>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Experience seamless tax filing, GST compliance, and comprehensive financial services. 
-                Let our experts handle your financial needs with precision and care.
+                Expert <strong>income tax return filing</strong>, <strong>GST registration & compliance</strong>, and <strong>TDS filing services</strong> in India. 
+                Get your taxes filed accurately by certified professionals with years of experience in tax compliance.
+              </p>
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                ✓ Online ITR Filing • ✓ GST Registration & Returns • ✓ TDS/TCS Compliance • ✓ Tax Planning • ✓ Notice Handling
               </p>
             </div>
             
@@ -32,7 +36,7 @@ const Hero = () => {
                 href="#services" 
                 className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                Explore Services
+                Explore Tax Services
               </a>
               <a 
                 href="/tax-calculator" 
@@ -46,15 +50,15 @@ const Hero = () => {
             <div className="grid grid-cols-3 gap-6 pt-8">
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-600 mb-2">10K+</div>
-                <div className="text-gray-600">ITR Filed</div>
+                <div className="text-gray-600">ITR Returns Filed</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-indigo-600 mb-2">200+</div>
-                <div className="text-gray-600">Notices Resolved</div>
+                <div className="text-gray-600">Tax Notices Resolved</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-600 mb-2">100+</div>
-                <div className="text-gray-600">GST Clients</div>
+                <div className="text-gray-600">GST Clients Served</div>
               </div>
             </div>
           </div>

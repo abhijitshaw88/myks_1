@@ -1,7 +1,46 @@
 import React from 'react';
+import SEO from '../SEO';
 import { ServiceSelector } from './TDSServices';
 
 const GSTServices = () => {
+  const seoData = {
+    title: 'GST Services | GST Registration & Filing | MyKS',
+    description: 'Professional GST services in India. GST registration, GST return filing, GST compliance services. Expert GST consultants for businesses. Starting from ₹999.',
+    keywords: 'GST services, GST registration, GST filing, GST return, GST compliance, GST consultant, GST registration online, GST return filing, GST services India, GST registration cost, GST filing services',
+    url: 'https://myks.co.in/services/gst',
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "GST Services",
+      "description": "Professional GST registration, filing, and compliance services in India",
+      "provider": {
+        "@type": "Organization",
+        "name": "MyKS - myKarSahayak"
+      },
+      "areaServed": "India",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "GST Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "GST Registration - New",
+            "price": "999",
+            "priceCurrency": "INR",
+            "description": "New GST registration for businesses"
+          },
+          {
+            "@type": "Offer",
+            "name": "GST Return Filing - Basic",
+            "price": "799",
+            "priceCurrency": "INR",
+            "description": "Monthly GST return filing for small businesses"
+          }
+        ]
+      }
+    }
+  };
+
   const gstPlans = [
     {
       title: 'GST Registration - New',
@@ -85,12 +124,14 @@ const GSTServices = () => {
 
   return (
     <div className="py-8 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <SEO {...seoData} />
       <div className="container mx-auto px-6">
         <ServiceSelector />
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">GST Services</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">GST Registration & Filing Services</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Comprehensive GST solutions for businesses of all sizes. Choose the plan that best fits your needs.
+            Professional <strong>GST services</strong> in India. Expert <strong>GST registration</strong>, <strong>GST return filing</strong>, and <strong>GST compliance services</strong>. 
+            Get your <strong>GST registration</strong> and <strong>GST returns filed</strong> accurately by certified professionals.
           </p>
         </div>
 
@@ -120,7 +161,7 @@ const GSTServices = () => {
         </div>
 
         <div className="mt-16 bg-white rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Why Choose Our GST Services?</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Why Choose Our GST Registration & Filing Services?</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-lg font-semibold text-gray-800 mb-3">Expert Team</h3>

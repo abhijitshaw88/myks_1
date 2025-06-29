@@ -1,7 +1,46 @@
 import React from 'react';
+import SEO from '../SEO';
 import { ServiceSelector } from './TDSServices';
 
 const ITRServices = () => {
+  const seoData = {
+    title: 'ITR Filing Services | Income Tax Return Filing | MyKS',
+    description: 'Professional ITR filing services in India. Expert income tax return filing for individuals and businesses. Get your ITR filed accurately and on time. Starting from ₹799.',
+    keywords: 'ITR filing, income tax return filing, ITR filing online, ITR filing services, income tax return, ITR filing India, ITR filing 2024, ITR filing deadline, ITR filing cost, ITR filing process',
+    url: 'https://myks.co.in/services/itr',
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "ITR Filing Services",
+      "description": "Professional Income Tax Return filing for individuals and businesses in India",
+      "provider": {
+        "@type": "Organization",
+        "name": "MyKS - myKarSahayak"
+      },
+      "areaServed": "India",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "ITR Filing Plans",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Individual ITR - Basic",
+            "price": "799",
+            "priceCurrency": "INR",
+            "description": "Income Tax Return filing for salaried individuals"
+          },
+          {
+            "@type": "Offer",
+            "name": "Individual ITR - Premium",
+            "price": "1499",
+            "priceCurrency": "INR",
+            "description": "Comprehensive ITR filing for individuals with multiple income sources"
+          }
+        ]
+      }
+    }
+  };
+
   const itrPlans = [
     {
       title: 'Individual ITR - Basic',
@@ -85,12 +124,14 @@ const ITRServices = () => {
 
   return (
     <div className="py-8 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <SEO {...seoData} />
       <div className="container mx-auto px-6">
         <ServiceSelector />
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">Income Tax Services</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">Income Tax Return Filing Services</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Comprehensive income tax solutions for individuals and businesses. Choose the plan that best fits your needs.
+            Professional <strong>ITR filing services</strong> in India. Expert <strong>income tax return filing</strong> for individuals and businesses. 
+            Get your <strong>ITR filed accurately</strong> and on time with our certified tax professionals.
           </p>
         </div>
 
@@ -120,7 +161,7 @@ const ITRServices = () => {
         </div>
 
         <div className="mt-16 bg-white rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Why Choose Our Income Tax Services?</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Why Choose Our Income Tax Return Filing Services?</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-lg font-semibold text-gray-800 mb-3">Expert Team</h3>
