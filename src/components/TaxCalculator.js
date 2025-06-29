@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Line, Bar, Doughnut } from 'react-chartjs-2';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Bar, Doughnut } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -29,7 +29,7 @@ ChartJS.register(
 
 const TaxCalculator = () => {
   const [activeTab, setActiveTab] = useState('income');
-  const [selectedYear, setSelectedYear] = useState('2024-25'); // Default to current FY
+  const [selectedYear, setSelectedYear] = useState('2025-26'); // Default to latest FY
   const [incomeData, setIncomeData] = useState({
     salary: 0,
     business: 0,
@@ -65,62 +65,80 @@ const TaxCalculator = () => {
 
   // Tax slabs for different years (Indian Tax System)
   const taxSlabs = {
-    '2024-25': {
+    '2025-26': {
       new: [
-        { min: 0, max: 300000, rate: 0 },
-        { min: 300000, max: 600000, rate: 0.05 },
-        { min: 600000, max: 900000, rate: 0.10 },
-        { min: 900000, max: 1200000, rate: 0.15 },
-        { min: 1200000, max: 1500000, rate: 0.20 },
-        { min: 1500000, max: Infinity, rate: 0.30 }
+        { min: 0, max: 400000, rate: 0 },
+        { min: 400001, max: 800000, rate: 0.05 },
+        { min: 800001, max: 1200000, rate: 0.10 },
+        { min: 1200001, max: 1600000, rate: 0.15 },
+        { min: 1600001, max: 2000000, rate: 0.20 },
+        { min: 2000001, max: 2400000, rate: 0.25 },
+        { min: 2400001, max: Infinity, rate: 0.30 }
       ],
       old: [
         { min: 0, max: 250000, rate: 0 },
-        { min: 250000, max: 500000, rate: 0.05 },
-        { min: 500000, max: 1000000, rate: 0.20 },
-        { min: 1000000, max: Infinity, rate: 0.30 }
+        { min: 250001, max: 500000, rate: 0.05 },
+        { min: 500001, max: 1000000, rate: 0.20 },
+        { min: 1000001, max: Infinity, rate: 0.30 }
       ],
-      standardDeduction: 50000
+      standardDeduction: 75000
+    },
+    '2024-25': {
+      new: [
+        { min: 0, max: 300000, rate: 0 },
+        { min: 300001, max: 700000, rate: 0.05 },
+        { min: 700001, max: 1000000, rate: 0.10 },
+        { min: 1000001, max: 1200000, rate: 0.15 },
+        { min: 1200001, max: 1500000, rate: 0.20 },
+        { min: 1500001, max: Infinity, rate: 0.30 }
+      ],
+      old: [
+        { min: 0, max: 250000, rate: 0 },
+        { min: 250001, max: 500000, rate: 0.05 },
+        { min: 500001, max: 1000000, rate: 0.20 },
+        { min: 1000001, max: Infinity, rate: 0.30 }
+      ],
+      standardDeduction: 75000
     },
     '2023-24': {
       new: [
         { min: 0, max: 300000, rate: 0 },
-        { min: 300000, max: 600000, rate: 0.05 },
-        { min: 600000, max: 900000, rate: 0.10 },
-        { min: 900000, max: 1200000, rate: 0.15 },
-        { min: 1200000, max: 1500000, rate: 0.20 },
-        { min: 1500000, max: Infinity, rate: 0.30 }
+        { min: 300001, max: 600000, rate: 0.05 },
+        { min: 600001, max: 900000, rate: 0.10 },
+        { min: 900001, max: 1200000, rate: 0.15 },
+        { min: 1200001, max: 1500000, rate: 0.20 },
+        { min: 1500001, max: Infinity, rate: 0.30 }
       ],
       old: [
         { min: 0, max: 250000, rate: 0 },
-        { min: 250000, max: 500000, rate: 0.05 },
-        { min: 500000, max: 1000000, rate: 0.20 },
-        { min: 1000000, max: Infinity, rate: 0.30 }
+        { min: 250001, max: 500000, rate: 0.05 },
+        { min: 500001, max: 1000000, rate: 0.20 },
+        { min: 1000001, max: Infinity, rate: 0.30 }
       ],
       standardDeduction: 50000
     },
     '2022-23': {
       new: [
         { min: 0, max: 250000, rate: 0 },
-        { min: 250000, max: 500000, rate: 0.05 },
-        { min: 500000, max: 750000, rate: 0.10 },
-        { min: 750000, max: 1000000, rate: 0.15 },
-        { min: 1000000, max: 1250000, rate: 0.20 },
-        { min: 1250000, max: 1500000, rate: 0.25 },
-        { min: 1500000, max: Infinity, rate: 0.30 }
+        { min: 250001, max: 500000, rate: 0.05 },
+        { min: 500001, max: 750000, rate: 0.10 },
+        { min: 750001, max: 1000000, rate: 0.15 },
+        { min: 1000001, max: 1250000, rate: 0.20 },
+        { min: 1250001, max: 1500000, rate: 0.25 },
+        { min: 1500001, max: Infinity, rate: 0.30 }
       ],
       old: [
         { min: 0, max: 250000, rate: 0 },
-        { min: 250000, max: 500000, rate: 0.05 },
-        { min: 500000, max: 1000000, rate: 0.20 },
-        { min: 1000000, max: Infinity, rate: 0.30 }
+        { min: 250001, max: 500000, rate: 0.05 },
+        { min: 500001, max: 1000000, rate: 0.20 },
+        { min: 1000001, max: Infinity, rate: 0.30 }
       ],
       standardDeduction: 50000
     }
   };
 
   // Calculate Income Tax based on selected year
-  const calculateIncomeTax = () => {
+  const calculateIncomeTax = useCallback(() => {
     const totalIncome = 
       incomeData.salary + 
       incomeData.business + 
@@ -152,8 +170,22 @@ const TaxCalculator = () => {
       }
     }
 
-    const cess = tax * 0.04; // 4% Health and Education Cess
-    const totalTax = tax + cess;
+    // Calculate Surcharge
+    let surcharge = 0;
+    if (taxableIncome > 50000000) { // Above 50 lakhs
+      if (taxableIncome > 100000000) { // Above 1 crore
+        if (taxableIncome > 200000000) { // Above 2 crore
+          surcharge = tax * 0.25; // 25% surcharge
+        } else {
+          surcharge = tax * 0.15; // 15% surcharge
+        }
+      } else {
+        surcharge = tax * 0.10; // 10% surcharge
+      }
+    }
+
+    const cess = (tax + surcharge) * 0.04; // 4% Health and Education Cess
+    const totalTax = tax + surcharge + cess;
     const effectiveRate = totalIncome > 0 ? (totalTax / totalIncome) * 100 : 0;
 
     return {
@@ -162,15 +194,16 @@ const TaxCalculator = () => {
       standardDeduction: incomeData.salary > 0 ? currentSlabs.standardDeduction : 0,
       taxableIncome,
       tax,
+      surcharge,
       cess,
       totalTax,
       effectiveRate,
       year: selectedYear,
     };
-  };
+  }, [incomeData, selectedYear]);
 
   // Calculate GST
-  const calculateGST = () => {
+  const calculateGST = useCallback(() => {
     const turnover = gstData.turnover;
     let gstRate = 0;
     let cgst = 0;
@@ -200,10 +233,10 @@ const TaxCalculator = () => {
       sgst,
       igst,
     };
-  };
+  }, [gstData]);
 
   // Calculate TDS
-  const calculateTDS = () => {
+  const calculateTDS = useCallback(() => {
     const payment = tdsData.payment;
     let tdsRate = 0;
 
@@ -225,7 +258,7 @@ const TaxCalculator = () => {
       tdsAmount,
       netAmount: payment - tdsAmount,
     };
-  };
+  }, [tdsData]);
 
   // Update results when data changes
   useEffect(() => {
@@ -238,25 +271,28 @@ const TaxCalculator = () => {
       gst: gstResult,
       tds: tdsResult,
     });
-  }, [incomeData, gstData, tdsData, selectedYear]);
+  }, [calculateIncomeTax, calculateGST, calculateTDS]);
 
   // Chart data for income tax breakdown
   const incomeTaxChartData = {
-    labels: ['Basic Tax', 'Cess', 'Net Tax'],
+    labels: ['Basic Tax', 'Surcharge', 'Cess', 'Net Tax'],
     datasets: [
       {
         data: [
           results.incomeTax?.tax || 0,
+          results.incomeTax?.surcharge || 0,
           results.incomeTax?.cess || 0,
           results.incomeTax?.totalTax || 0,
         ],
         backgroundColor: [
           'rgba(59, 130, 246, 0.8)',
+          'rgba(245, 158, 11, 0.8)',
           'rgba(239, 68, 68, 0.8)',
           'rgba(16, 185, 129, 0.8)',
         ],
         borderColor: [
           'rgba(59, 130, 246, 1)',
+          'rgba(245, 158, 11, 1)',
           'rgba(239, 68, 68, 1)',
           'rgba(16, 185, 129, 1)',
         ],
@@ -334,7 +370,7 @@ const TaxCalculator = () => {
             💰 Indian Tax Calculator
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Calculate your Indian taxes with precision. Based on official Indian Income Tax Act and updated for FY 2024-25.
+            Calculate your Indian taxes with precision. Updated with latest Budget 2025 tax slabs and ₹75,000 standard deduction.
           </p>
         </div>
 
@@ -347,6 +383,7 @@ const TaxCalculator = () => {
               onChange={(e) => setSelectedYear(e.target.value)}
               className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
+              <option value="2025-26">2025-26 (AY 2026-27)</option>
               <option value="2024-25">2024-25 (AY 2025-26)</option>
               <option value="2023-24">2023-24 (AY 2024-25)</option>
               <option value="2022-23">2022-23 (AY 2023-24)</option>
@@ -677,6 +714,30 @@ const TaxCalculator = () => {
                     </div>
                   </div>
 
+                  {/* Tax Breakdown Details */}
+                  <div className="grid grid-cols-3 gap-4 mb-4">
+                    <div className="bg-gray-50 p-3 rounded-lg text-center">
+                      <div className="text-sm text-gray-600 font-medium">Basic Tax</div>
+                      <div className="text-lg font-bold text-gray-900">
+                        {formatCurrency(results.incomeTax.tax)}
+                      </div>
+                    </div>
+                    {results.incomeTax.surcharge > 0 && (
+                      <div className="bg-yellow-50 p-3 rounded-lg text-center">
+                        <div className="text-sm text-yellow-600 font-medium">Surcharge</div>
+                        <div className="text-lg font-bold text-yellow-900">
+                          {formatCurrency(results.incomeTax.surcharge)}
+                        </div>
+                      </div>
+                    )}
+                    <div className="bg-orange-50 p-3 rounded-lg text-center">
+                      <div className="text-sm text-orange-600 font-medium">Cess (4%)</div>
+                      <div className="text-lg font-bold text-orange-900">
+                        {formatCurrency(results.incomeTax.cess)}
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Standard Deduction Info */}
                   {results.incomeTax.standardDeduction > 0 && (
                     <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
@@ -874,11 +935,21 @@ const TaxCalculator = () => {
         {/* Disclaimer */}
         <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-6">
           <h3 className="text-lg font-semibold text-yellow-800 mb-2">⚠️ Important Disclaimer</h3>
-          <p className="text-yellow-700 text-sm">
-            This calculator is based on Indian Income Tax Act and is for estimation purposes only. 
+          <p className="text-yellow-700 text-sm mb-3">
+            This calculator is based on Indian Income Tax Act and Budget 2025 announcements. 
+            The FY 2025-26 rates are as per the proposed changes in Union Budget 2025. 
             Actual tax liability may vary based on specific circumstances, exemptions, and deductions. 
             Please consult a qualified tax professional for accurate tax planning and filing.
           </p>
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-blue-900 mb-2">📋 Key Budget 2025 Changes:</h4>
+            <ul className="text-blue-800 text-sm space-y-1">
+              <li>• New tax regime basic exemption limit increased to ₹4 lakh (from ₹3 lakh)</li>
+              <li>• Standard deduction increased to ₹75,000 (from ₹50,000)</li>
+              <li>• Tax rebate under Section 87A extended up to ₹12 lakh taxable income</li>
+              <li>• New tax regime becomes more attractive with revised slabs</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
