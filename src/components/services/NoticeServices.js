@@ -121,24 +121,6 @@ const NoticeServices = () => {
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-8 text-white text-center mb-16">
-          <h3 className="text-2xl font-bold mb-4">💬 Get a Personalized Quotation</h3>
-          <p className="text-lg mb-6">
-            Each notice is unique, and our pricing is customized based on complexity, urgency, and required level of representation.
-          </p>
-          <h4 className="text-xl font-semibold mb-4">📩 Request a Free Evaluation of Your Notice Today</h4>
-          <p className="text-lg mb-6">
-            Get a personalized quote and resolution timeline from our experts within 24 hours.
-          </p>
-          <a 
-            href="#contact" 
-            className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-          >
-            Get Free Evaluation
-          </a>
-        </div>
-
         {/* FAQ Section */}
         <div className="bg-white rounded-xl p-8 shadow-lg mb-16">
           <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">Frequently Asked Questions</h2>

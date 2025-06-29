@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div>
             <h3 className="text-xl font-bold mb-4">MyKS</h3>
@@ -43,10 +43,25 @@ const Footer = () => {
                 <Link to="/" className="text-gray-400 hover:text-white transition">Home</Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-400 hover:text-white transition">Services</Link>
+                <Link to="/services/itr" className="text-gray-400 hover:text-white transition">ITR Filing</Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-400 hover:text-white transition">Contact</Link>
+                <Link to="/services/gst" className="text-gray-400 hover:text-white transition">GST Services</Link>
+              </li>
+              <li>
+                <Link to="/services/tds" className="text-gray-400 hover:text-white transition">TDS Services</Link>
+              </li>
+              <li>
+                <Link to="/tax-calculator" className="text-gray-400 hover:text-white transition">Tax Calculator</Link>
+              </li>
+              <li>
+                <Link to="/resources" className="text-gray-400 hover:text-white transition">Resources</Link>
+              </li>
+              <li>
+                <Link to="/team" className="text-gray-400 hover:text-white transition">Our Team</Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-gray-400 hover:text-white transition">Contact Us</Link>
               </li>
             </ul>
           </div>
@@ -56,36 +71,24 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Our Services</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/services/itr" className="text-gray-400 hover:text-white transition">Income Tax Services</Link>
+                <Link to="/services/itr" className="text-gray-400 hover:text-white transition">Income Tax Filing</Link>
               </li>
               <li>
-                <Link to="/services/gst" className="text-gray-400 hover:text-white transition">GST Services</Link>
+                <Link to="/services/gst" className="text-gray-400 hover:text-white transition">GST Registration & Filing</Link>
               </li>
               <li>
-                <Link to="/services/tds" className="text-gray-400 hover:text-white transition">TDS Services</Link>
+                <Link to="/services/tds" className="text-gray-400 hover:text-white transition">TDS/TCS Compliance</Link>
+              </li>
+              <li>
+                <Link to="/services/tax-planning" className="text-gray-400 hover:text-white transition">Tax Planning</Link>
+              </li>
+              <li>
+                <Link to="/services/notice" className="text-gray-400 hover:text-white transition">Notice Handling</Link>
+              </li>
+              <li>
+                <Link to="/partner-planning" className="text-gray-400 hover:text-white transition">Corporate Tie-up</Link>
               </li>
             </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Newsletter</h3>
-            <p className="text-gray-400 mb-4">
-              Subscribe to our newsletter for the latest updates and tax news.
-            </p>
-            <form className="flex flex-col space-y-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-4 py-2 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <button
-                type="submit"
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-              >
-                Subscribe
-              </button>
-            </form>
           </div>
         </div>
 

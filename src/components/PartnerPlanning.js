@@ -6,7 +6,7 @@ const PartnerPlanning = () => {
           <h1 className="text-5xl font-bold text-white mb-6">Corporate tie-up Services</h1>
           <p className="text-blue-100 max-w-3xl mx-auto text-xl leading-relaxed">
             Ready to take your business to the next level? Our corporate tie-up services offer customized solutions 
-            tailored to your specific needs. Get a personalized quote and start your journey towards financial success.
+            tailored to your specific needs. Comprehensive tax and compliance solutions for businesses of all sizes.
           </p>
         </div>
         
@@ -52,52 +52,37 @@ const PartnerPlanning = () => {
             </div>
           </div>
           
-          {/* Right Side - Quote Request */}
+          {/* Right Side - Information */}
           <div className="bg-white rounded-xl shadow-2xl p-8">
             <div className="text-center mb-8">
               <div className="text-5xl mb-4">💼</div>
-              <h4 className="text-2xl font-bold text-gray-800 mb-4">Request Your Custom Quote</h4>
+              <h4 className="text-2xl font-bold text-gray-800 mb-4">Corporate Partnership Services</h4>
               <p className="text-gray-600">
-                Tell us about your business needs and get a personalized quote within 24 hours.
+                Comprehensive tax and compliance solutions tailored for businesses of all sizes.
               </p>
             </div>
             
             <div className="space-y-6">
               <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                <h5 className="font-semibold text-blue-800 mb-2">What's Included:</h5>
+                <h5 className="font-semibold text-blue-800 mb-2">Our Services Include:</h5>
                 <ul className="space-y-2 text-sm text-blue-700">
                   <li className="flex items-center space-x-2">
                     <span className="text-green-500">✓</span>
-                    <span>Free Initial Consultation</span>
+                    <span>Comprehensive Tax Planning</span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <span className="text-green-500">✓</span>
-                    <span>Customized Service Package</span>
+                    <span>GST Registration & Filing</span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <span className="text-green-500">✓</span>
-                    <span>Detailed Cost Breakdown</span>
+                    <span>TDS/TCS Compliance</span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <span className="text-green-500">✓</span>
-                    <span>Implementation Timeline</span>
+                    <span>Business Advisory Services</span>
                   </li>
                 </ul>
-              </div>
-              
-              <div className="text-center">
-                <a 
-                  href="#contact" 
-                  className="inline-flex items-center justify-center w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-                >
-                  <span className="mr-2">Get Your Quote</span>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-                <p className="text-sm text-gray-500 mt-3">
-                  No commitment required • Response within 24 hours
-                </p>
               </div>
             </div>
           </div>

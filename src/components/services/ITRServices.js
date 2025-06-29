@@ -114,12 +114,6 @@ const ITRServices = () => {
                     </li>
                   ))}
                 </ul>
-                <a 
-                  href="#contact" 
-                  className="block w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-lg font-medium transition text-center"
-                >
-                  Get Started
-                </a>
               </div>
             </div>
           ))}

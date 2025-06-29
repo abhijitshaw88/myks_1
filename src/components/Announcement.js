@@ -56,9 +56,6 @@ const Announcement = () => {
 
           {/* Call to action button */}
           <div className="flex items-center space-x-4">
-            <button className="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">
-              File Now
-            </button>
             <button
               onClick={() => setIsVisible(false)}
               className="text-white/80 hover:text-white transition-colors duration-300"

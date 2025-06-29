@@ -149,21 +149,6 @@ const TaxPlanningServices = () => {
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-xl p-8 text-white text-center mb-16">
-          <h3 className="text-2xl font-bold mb-4">📩 Request a Custom Quote</h3>
-          <p className="text-lg mb-6">
-            Our pricing is customized based on the nature and complexity of your tax profile. 
-            Share a few details, and our experts will reach out with a quote and timeline—within 24 hours.
-          </p>
-          <a 
-            href="#contact" 
-            className="inline-block bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-          >
-            Get Custom Quote
-          </a>
-        </div>
-
         {/* FAQ Section */}
         <div className="bg-white rounded-xl p-8 shadow-lg mb-16">
           <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">Frequently Asked Questions</h2>

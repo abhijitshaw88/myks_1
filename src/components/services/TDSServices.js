@@ -177,21 +177,6 @@ const TDSServices = () => {
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-8 text-white text-center mb-16">
-          <h3 className="text-2xl font-bold mb-4">📩 Get a Personalized Quote Now</h3>
-          <p className="text-lg mb-6">
-            TDS requirements vary depending on transaction type, frequency, and compliance history. 
-            Share your requirements, and our experts will provide a detailed proposal within 24 hours.
-          </p>
-          <a 
-            href="#contact" 
-            className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-          >
-            Get Personalized Quote
-          </a>
-        </div>
-
         <div className="bg-white rounded-xl p-8 shadow-lg">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Why Choose Our TDS Services?</h2>
           <div className="grid md:grid-cols-2 gap-8">
