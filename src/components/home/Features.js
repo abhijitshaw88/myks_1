@@ -10,6 +10,15 @@ const Features = () => {
       )
     },
     {
+      title: 'Tax Calculator',
+      description: 'Use our modern tax calculator with interactive graphs to estimate your taxes instantly.',
+      icon: (
+        <svg className="h-12 w-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        </svg>
+      )
+    },
+    {
       title: 'Timely Service',
       description: 'We ensure all your tax and compliance deadlines are met with our proactive approach.',
       icon: (
@@ -48,7 +57,7 @@ const Features = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
           {features.map((feature, index) => (
             <div key={index} className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition">
               <div className="mb-6">
@@ -56,6 +65,14 @@ const Features = () => {
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-4">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
+              {feature.title === 'Tax Calculator' && (
+                <a 
+                  href="/tax-calculator" 
+                  className="inline-block mt-4 text-green-600 hover:text-green-700 font-semibold transition"
+                >
+                  Try Calculator →
+                </a>
+              )}
             </div>
           ))}
         </div>

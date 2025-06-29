@@ -35,6 +35,12 @@ const Hero = () => {
                 Explore Services
               </a>
               <a 
+                href="/tax-calculator" 
+                className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
+                💰 Tax Calculator
+              </a>
+              <a 
                 href="#contact" 
                 className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
               >
