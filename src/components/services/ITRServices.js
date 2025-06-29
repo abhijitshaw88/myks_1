@@ -14,8 +14,7 @@ const ITRServices = () => {
         'Tax Saving Investments',
         'Form 16 Processing',
         'Basic Tax Advisory'
-      ],
-      recommended: false
+      ]
     },
     {
       title: 'Individual ITR - Premium',
@@ -28,8 +27,7 @@ const ITRServices = () => {
         'Business Income',
         'Tax Planning Support',
         'Dedicated Tax Expert'
-      ],
-      recommended: true
+      ]
     },
     {
       title: 'Business ITR - Basic',
@@ -42,8 +40,7 @@ const ITRServices = () => {
         'Business Deductions',
         'Tax Audit Support',
         'Basic Business Advisory'
-      ],
-      recommended: false
+      ]
     },
     {
       title: 'Business ITR - Premium',
@@ -56,8 +53,7 @@ const ITRServices = () => {
         'Transfer Pricing',
         'Tax Planning & Strategy',
         'Dedicated Business Expert'
-      ],
-      recommended: false
+      ]
     },
     {
       title: 'Tax Planning Package',
@@ -70,8 +66,7 @@ const ITRServices = () => {
         'Regular Tax Reviews',
         'Compliance Calendar',
         'Priority Support'
-      ],
-      recommended: false
+      ]
     },
     {
       title: 'Tax Assessment Support',
@@ -84,8 +79,7 @@ const ITRServices = () => {
         'Compliance Review',
         'Expert Consultation',
         'Follow-up Support'
-      ],
-      recommended: false
+      ]
     }
   ];
 
@@ -104,15 +98,8 @@ const ITRServices = () => {
           {itrPlans.map((plan, index) => (
             <div 
               key={index} 
-              className={`bg-white rounded-xl shadow-lg overflow-hidden border ${
-                plan.recommended ? 'border-blue-500' : 'border-gray-100'
-              } hover:shadow-xl transition relative`}
+              className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition"
             >
-              {plan.recommended && (
-                <div className="absolute top-0 right-0 bg-blue-500 text-white px-4 py-1 rounded-bl-lg">
-                  Recommended
-                </div>
-              )}
               <div className="p-8">
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">{plan.title}</h3>
                 <p className="text-gray-600 mb-4">{plan.description}</p>
@@ -129,11 +116,7 @@ const ITRServices = () => {
                 </ul>
                 <a 
                   href="#contact" 
-                  className={`block w-full ${
-                    plan.recommended 
-                      ? 'bg-blue-600 hover:bg-blue-700' 
-                      : 'bg-gray-800 hover:bg-gray-900'
-                  } text-white py-3 rounded-lg font-medium transition text-center`}
+                  className="block w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-lg font-medium transition text-center"
                 >
                   Get Started
                 </a>

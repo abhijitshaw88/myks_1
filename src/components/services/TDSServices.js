@@ -5,12 +5,13 @@ export const ServiceSelector = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const services = [
-    { key: 'tds', label: 'TDS', path: '/services/tds' },
-    { key: 'itr', label: 'ITR', path: '/services/itr' },
-    { key: 'gst', label: 'GST', path: '/services/gst' },
-    { key: 'other', label: 'Other', path: '/services/other' },
+    { key: 'itr', label: 'ITR Filing', path: '/services/itr' },
+    { key: 'tax-planning', label: 'Tax Planning', path: '/services/tax-planning' },
+    { key: 'gst', label: 'GST Services', path: '/services/gst' },
+    { key: 'tds', label: 'TDS/TCS Compliance', path: '/services/tds' },
+    { key: 'notice', label: 'Notice Handling', path: '/services/notice' },
   ];
-  const current = services.find(s => location.pathname.startsWith(s.path))?.key || 'tds';
+  const current = services.find(s => location.pathname.startsWith(s.path))?.key || 'itr';
 
   return (
     <div className="mb-10">
@@ -67,6 +68,55 @@ export const ServiceSelector = () => {
 };
 
 const TDSServices = () => {
+  const tdsServices = [
+    {
+      title: "TDS on Salary Payments (Form 24Q)",
+      description: "We manage quarterly returns for salaries paid to employees, including tax computation, challan mapping, and Form 16 generation.",
+      icon: "📑"
+    },
+    {
+      title: "TDS on Property Transactions (Section 194IA / Form 26QB)",
+      description: "If you're buying immovable property worth more than ₹50 lakhs, you're liable to deduct 1% TDS. We assist with Form 26QB filing, challan payment, PAN verification, and correction or revision in case of wrong PAN/details.",
+      icon: "🏠"
+    },
+    {
+      title: "TDS on Rent Payments (Section 194I / 26QC)",
+      description: "Applicable on rent paid for commercial/residential properties exceeding ₹2.4 lakhs annually. We help with Form 26QC preparation and filing, HUF/individual deduction compliance, and generation of Form 16C for landlords.",
+      icon: "🏢"
+    },
+    {
+      title: "TDS on Commission or Brokerage (Section 194H)",
+      description: "If you're paying commission, referral fees, or brokerage exceeding ₹15,000 per annum, we assist in TDS deduction and return filing under 26Q, Form 16A generation, and vendor PAN validation and challan tracking.",
+      icon: "💼"
+    },
+    {
+      title: "TDS on Professional & Contractual Services (Section 194J / 194C)",
+      description: "We handle TDS return filing for service payments to professionals, freelancers, contractors, etc., under applicable sections.",
+      icon: "🧾"
+    }
+  ];
+
+  const keyFeatures = [
+    "Quarterly Return Filing – Forms 24Q, 26Q, 27Q, 27EQ",
+    "Form 16/16A Generation – Professionally formatted and auto-emailed",
+    "Correction & Rectification – File revised statements and fix past errors",
+    "TAN Registration Assistance – Apply and track your TAN online",
+    "Bulk PAN Verification – Eliminate mismatches with TRACES validation",
+    "TRACES Integration – Auto-import data from previously filed returns",
+    "Dashboard Access – View all deductor information in one place",
+    "Early Warning System – Get alerts for potential defaults and notices"
+  ];
+
+  const whoShouldUse = [
+    "Individuals buying property",
+    "Landlords collecting high-value rent",
+    "Startups and MSMEs with vendor payments",
+    "HR or payroll teams in mid-to-large enterprises",
+    "CAs managing clients' TDS portfolios",
+    "Real estate professionals and brokers",
+    "Business owners with contractual/commission payments"
+  ];
+
   const tdsPlans = [
     {
       title: 'TDS Return Filing - Basic',
@@ -79,8 +129,7 @@ const TDSServices = () => {
         'TDS Certificate Generation',
         'Basic TDS Advisory',
         'Return Filing Reminders'
-      ],
-      recommended: false
+      ]
     },
     {
       title: 'TDS Return Filing - Premium',
@@ -93,8 +142,7 @@ const TDSServices = () => {
         'Monthly TDS Reports',
         'TDS Audit Support',
         'Dedicated TDS Expert'
-      ],
-      recommended: true
+      ]
     },
     {
       title: 'TDS Compliance Package',
@@ -107,8 +155,7 @@ const TDSServices = () => {
         'Compliance Calendar',
         'Regular TDS Advisory',
         'Audit Support'
-      ],
-      recommended: false
+      ]
     },
     {
       title: 'TDS Assessment Support',
@@ -121,8 +168,7 @@ const TDSServices = () => {
         'Compliance Review',
         'Expert Consultation',
         'Follow-up Support'
-      ],
-      recommended: false
+      ]
     }
   ];
 
@@ -130,56 +176,113 @@ const TDSServices = () => {
     <div className="py-8 bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="container mx-auto px-6">
         <ServiceSelector />
+        
+        {/* Hero Section */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">TDS Services</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Comprehensive TDS solutions to ensure accurate tax deduction and timely compliance.
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">📥 TDS Return Filing Services</h1>
+          <h2 className="text-2xl font-semibold text-gray-700 mb-6">Accurate Filing. Full Compliance. Expert Handling.</h2>
+          <p className="text-gray-600 max-w-4xl mx-auto text-lg leading-relaxed">
+            At myKarSahayak, we provide expert-led TDS Return Filing and compliance solutions for businesses, property buyers, 
+            landlords, professionals, and NRIs. Whether you're deducting tax on salaries, property transactions, rent, or commissions, 
+            we ensure timely and error-free filing – helping you avoid penalties and notices from the IT department.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {tdsPlans.map((plan, index) => (
-            <div 
-              key={index} 
-              className={`bg-white rounded-xl shadow-lg overflow-hidden border ${
-                plan.recommended ? 'border-blue-500' : 'border-gray-100'
-              } hover:shadow-xl transition relative`}
-            >
-              {plan.recommended && (
-                <div className="absolute top-0 right-0 bg-blue-500 text-white px-4 py-1 rounded-bl-lg">
-                  Recommended
-                </div>
-              )}
-              <div className="p-8">
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">{plan.title}</h3>
-                <p className="text-gray-600 mb-4">{plan.description}</p>
-                <div className="text-3xl font-bold text-blue-600 mb-6">{plan.price}</div>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <svg className="h-5 w-5 text-green-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a 
-                  href="#contact" 
-                  className={`block w-full ${
-                    plan.recommended 
-                      ? 'bg-blue-600 hover:bg-blue-700' 
-                      : 'bg-gray-800 hover:bg-gray-900'
-                  } text-white py-3 rounded-lg font-medium transition text-center`}
-                >
-                  Get Started
-                </a>
+        {/* Our TDS Services Cover */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">💼 Our TDS Services Cover:</h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            {tdsServices.map((service, index) => (
+              <div key={index} className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-all duration-300">
+                <div className="text-3xl mb-4">{service.icon}</div>
+                <h4 className="text-xl font-semibold text-gray-800 mb-3">{service.title}</h4>
+                <p className="text-gray-600 leading-relaxed">{service.description}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        <div className="mt-16 bg-white rounded-xl p-8 shadow-lg">
+        {/* Key Features */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">🧮 Key Features of Our TDS Filing Services</h3>
+          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+            <div className="grid md:grid-cols-2 gap-4">
+              {keyFeatures.map((feature, index) => (
+                <div key={index} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                  <span className="text-green-600 mt-1">✅</span>
+                  <span className="text-gray-700">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Who Should Use This Service */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">👥 Who Should Use This Service?</h3>
+          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {whoShouldUse.map((user, index) => (
+                <div key={index} className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                  <span className="text-blue-600">✔</span>
+                  <span className="text-gray-700 font-medium">{user}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Pricing Plans */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">Our TDS Service Plans</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {tdsPlans.map((plan, index) => (
+              <div 
+                key={index} 
+                className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition"
+              >
+                <div className="p-8">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">{plan.title}</h3>
+                  <p className="text-gray-600 mb-4">{plan.description}</p>
+                  <div className="text-3xl font-bold text-blue-600 mb-6">{plan.price}</div>
+                  <ul className="space-y-3 mb-8">
+                    {plan.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <svg className="h-5 w-5 text-green-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-gray-600">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a 
+                    href="#contact" 
+                    className="block w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-lg font-medium transition text-center"
+                  >
+                    Get Started
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-8 text-white text-center mb-16">
+          <h3 className="text-2xl font-bold mb-4">📩 Get a Personalized Quote Now</h3>
+          <p className="text-lg mb-6">
+            TDS requirements vary depending on transaction type, frequency, and compliance history. 
+            Share your requirements, and our experts will provide a detailed proposal within 24 hours.
+          </p>
+          <a 
+            href="#contact" 
+            className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+          >
+            Get Personalized Quote
+          </a>
+        </div>
+
+        <div className="bg-white rounded-xl p-8 shadow-lg">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Why Choose Our TDS Services?</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
@@ -201,9 +304,9 @@ const TDSServices = () => {
               </p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">Dedicated Support</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-3">Technology Driven</h3>
               <p className="text-gray-600">
-                Get personalized assistance for all your TDS-related queries and concerns.
+                We use advanced software and tools to ensure efficient TDS compliance.
               </p>
             </div>
           </div>

@@ -7,6 +7,8 @@ import Services from './components/services/Services';
 import GSTServices from './components/services/GSTServices';
 import TDSServices from './components/services/TDSServices';
 import ITRServices from './components/services/ITRServices';
+import TaxPlanningServices from './components/services/TaxPlanningServices';
+import NoticeServices from './components/services/NoticeServices';
 import PartnerPlanning from './components/PartnerPlanning';
 import Contact from './components/contact/Contact';
 import Team from './components/team/Team';
@@ -42,11 +44,12 @@ function App() {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Navigate to='/services/tds' replace />} />
+          <Route path="/services" element={<Navigate to='/services/itr' replace />} />
+          <Route path="/services/itr" element={<ITRServices />} />
+          <Route path="/services/tax-planning" element={<TaxPlanningServices />} />
           <Route path="/services/gst" element={<GSTServices />} />
           <Route path="/services/tds" element={<TDSServices />} />
-          <Route path="/services/itr" element={<ITRServices />} />
-          <Route path="/services/other" element={<Services />} />
+          <Route path="/services/notice" element={<NoticeServices />} />
           <Route path="/partner-planning" element={<PartnerPlanning />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/team" element={<Team/>} />

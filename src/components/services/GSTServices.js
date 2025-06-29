@@ -14,8 +14,7 @@ const GSTServices = () => {
         'GSTIN Generation',
         'Post Registration Support',
         'Basic GST Advisory'
-      ],
-      recommended: false
+      ]
     },
     {
       title: 'GST Registration - Premium',
@@ -28,8 +27,7 @@ const GSTServices = () => {
         'GST Software Training',
         '3 Months Free GST Return Filing',
         'Extended Support Period'
-      ],
-      recommended: true
+      ]
     },
     {
       title: 'GST Return Filing - Basic',
@@ -42,8 +40,7 @@ const GSTServices = () => {
         'GST Payment Support',
         'Return Filing Reminders',
         'Basic GST Advisory'
-      ],
-      recommended: false
+      ]
     },
     {
       title: 'GST Return Filing - Premium',
@@ -56,8 +53,7 @@ const GSTServices = () => {
         'GST Audit Support',
         'Priority Filing',
         'Dedicated GST Expert'
-      ],
-      recommended: false
+      ]
     },
     {
       title: 'GST Annual Return',
@@ -70,8 +66,7 @@ const GSTServices = () => {
         'Compliance Review',
         'Annual GST Report',
         'Expert Consultation'
-      ],
-      recommended: false
+      ]
     },
     {
       title: 'GST Audit',
@@ -84,8 +79,7 @@ const GSTServices = () => {
         'Compliance Review',
         'Expert Consultation',
         'Representation Support'
-      ],
-      recommended: false
+      ]
     }
   ];
 
@@ -104,15 +98,8 @@ const GSTServices = () => {
           {gstPlans.map((plan, index) => (
             <div 
               key={index} 
-              className={`bg-white rounded-xl shadow-lg overflow-hidden border ${
-                plan.recommended ? 'border-blue-500' : 'border-gray-100'
-              } hover:shadow-xl transition relative`}
+              className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition"
             >
-              {plan.recommended && (
-                <div className="absolute top-0 right-0 bg-blue-500 text-white px-4 py-1 rounded-bl-lg">
-                  Recommended
-                </div>
-              )}
               <div className="p-8">
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">{plan.title}</h3>
                 <p className="text-gray-600 mb-4">{plan.description}</p>
@@ -129,11 +116,7 @@ const GSTServices = () => {
                 </ul>
                 <a 
                   href="#contact" 
-                  className={`block w-full ${
-                    plan.recommended 
-                      ? 'bg-blue-600 hover:bg-blue-700' 
-                      : 'bg-gray-800 hover:bg-gray-900'
-                  } text-white py-3 rounded-lg font-medium transition text-center`}
+                  className="block w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-lg font-medium transition text-center"
                 >
                   Get Started
                 </a>
