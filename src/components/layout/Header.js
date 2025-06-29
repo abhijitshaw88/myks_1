@@ -52,7 +52,23 @@ const Header = () => {
           </div>
           <nav className="hidden md:flex space-x-8 items-center">
             <Link to="/" className="text-blue-600 font-medium hover:underline underline-offset-4 transition">Home</Link>
-            <Link to="/services" className="text-gray-600 hover:text-blue-600 font-medium transition">Services</Link>
+            <div className="relative group">
+              <button className="text-gray-600 hover:text-blue-600 font-medium transition flex items-center">
+                Services
+                <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="py-2">
+                  <a href="/services/itr" className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">ITR Filing</a>
+                  <a href="/services/gst" className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">GST Services</a>
+                  <a href="/services/tds" className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">TDS/TCS Compliance</a>
+                  <a href="/services/notice" className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">Notice Handling</a>
+                </div>
+              </div>
+            </div>
+            <Link to="/resources" className="text-gray-600 hover:text-blue-600 font-medium transition">Resources</Link>
             <Link to="/team" className="text-gray-600 hover:text-blue-600 font-medium transition">Team</Link>
             <Link to="/contact" className="text-gray-600 hover:text-blue-600 font-medium transition">Contact</Link>
             <Link 

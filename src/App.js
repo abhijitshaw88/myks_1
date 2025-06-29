@@ -12,6 +12,7 @@ import NoticeServices from './components/services/NoticeServices';
 import PartnerPlanning from './components/PartnerPlanning';
 import Contact from './components/contact/Contact';
 import Team from './components/team/Team';
+import Resources from './components/Resources';
 import NotFound from './components/NotFound';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           <Route path="/services/gst" element={<GSTServices />} />
           <Route path="/services/tds" element={<TDSServices />} />
           <Route path="/services/notice" element={<NoticeServices />} />
+          <Route path="/resources" element={<Resources />} />
           <Route path="/partner-planning" element={<PartnerPlanning />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/team" element={<Team/>} />
