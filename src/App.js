@@ -1,5 +1,5 @@
-import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Announcement from './components/Announcement';
 import Footer from './components/layout/Footer';
@@ -16,9 +16,21 @@ import Resources from './components/Resources';
 import TaxCalculator from './components/TaxCalculator';
 import NotFound from './components/NotFound';
 
+// Custom hook to scroll to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollToTop />
       {/* WhatsApp Floating Button */}
       <div className="fixed bottom-6 right-6 z-50 flex items-center whatsapp" title="WhatsApp us">
         <a
