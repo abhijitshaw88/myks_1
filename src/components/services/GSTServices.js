@@ -5,7 +5,7 @@ const GSTServices = () => {
   const gstPlans = [
     {
       title: 'GST Registration - New',
-      price: '₹1,499',
+      price: 'Starting from ₹999',
       description: 'New GST registration for businesses',
       features: [
         'GST Registration Application',
@@ -18,7 +18,7 @@ const GSTServices = () => {
     },
     {
       title: 'GST Registration - Premium',
-      price: '₹2,999',
+      price: 'Starting from ₹1,999',
       description: 'Complete GST registration with additional benefits',
       features: [
         'Everything in Basic Plan',
@@ -31,7 +31,7 @@ const GSTServices = () => {
     },
     {
       title: 'GST Return Filing - Basic',
-      price: '₹999/month',
+      price: 'Starting from ₹799/month',
       description: 'Monthly GST return filing for small businesses',
       features: [
         'GSTR-1 Filing',
@@ -44,7 +44,7 @@ const GSTServices = () => {
     },
     {
       title: 'GST Return Filing - Premium',
-      price: '₹1,999/month',
+      price: 'Starting from ₹1,499/month',
       description: 'Comprehensive GST return filing with additional services',
       features: [
         'Everything in Basic Plan',
@@ -57,7 +57,7 @@ const GSTServices = () => {
     },
     {
       title: 'GST Annual Return',
-      price: '₹4,999',
+      price: 'Starting from ₹3,999',
       description: 'Annual GST return filing (GSTR-9)',
       features: [
         'GSTR-9 Preparation & Filing',
@@ -70,7 +70,7 @@ const GSTServices = () => {
     },
     {
       title: 'GST Audit',
-      price: '₹9,999',
+      price: 'Starting from ₹7,999',
       description: 'Complete GST audit services',
       features: [
         'GSTR-9C Preparation',

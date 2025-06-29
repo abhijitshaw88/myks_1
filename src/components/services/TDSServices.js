@@ -232,41 +232,6 @@ const TDSServices = () => {
           </div>
         </div>
 
-        {/* Pricing Plans */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">Our TDS Service Plans</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {tdsPlans.map((plan, index) => (
-              <div 
-                key={index} 
-                className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition"
-              >
-                <div className="p-8">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">{plan.title}</h3>
-                  <p className="text-gray-600 mb-4">{plan.description}</p>
-                  <div className="text-3xl font-bold text-blue-600 mb-6">{plan.price}</div>
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <svg className="h-5 w-5 text-green-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-gray-600">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <a 
-                    href="#contact" 
-                    className="block w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-lg font-medium transition text-center"
-                  >
-                    Get Started
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Call to Action */}
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-8 text-white text-center mb-16">
           <h3 className="text-2xl font-bold mb-4">📩 Get a Personalized Quote Now</h3>

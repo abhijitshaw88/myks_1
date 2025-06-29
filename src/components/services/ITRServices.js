@@ -5,7 +5,7 @@ const ITRServices = () => {
   const itrPlans = [
     {
       title: 'Individual ITR - Basic',
-      price: '₹999',
+      price: 'Starting from ₹799',
       description: 'Income Tax Return filing for salaried individuals',
       features: [
         'Income from Salary',
@@ -18,7 +18,7 @@ const ITRServices = () => {
     },
     {
       title: 'Individual ITR - Premium',
-      price: '₹1,999',
+      price: 'Starting from ₹1,499',
       description: 'Comprehensive ITR filing for individuals with multiple income sources',
       features: [
         'Everything in Basic Plan',
@@ -31,7 +31,7 @@ const ITRServices = () => {
     },
     {
       title: 'Business ITR - Basic',
-      price: '₹2,999',
+      price: 'Starting from ₹2,499',
       description: 'Income Tax Return filing for small businesses',
       features: [
         'Business Income',
@@ -44,7 +44,7 @@ const ITRServices = () => {
     },
     {
       title: 'Business ITR - Premium',
-      price: '₹4,999',
+      price: 'Starting from ₹3,999',
       description: 'Complete ITR solution for businesses with complex requirements',
       features: [
         'Everything in Basic Plan',
@@ -57,7 +57,7 @@ const ITRServices = () => {
     },
     {
       title: 'Tax Planning Package',
-      price: '₹9,999/year',
+      price: 'Starting from ₹7,999/year',
       description: 'Comprehensive tax planning and compliance solution',
       features: [
         'Year-round Tax Planning',
@@ -70,7 +70,7 @@ const ITRServices = () => {
     },
     {
       title: 'Tax Assessment Support',
-      price: '₹4,999',
+      price: 'Starting from ₹3,999',
       description: 'Support during income tax assessment',
       features: [
         'Assessment Preparation',
