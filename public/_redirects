@@ -1,1 +1,18 @@
-/*    /index.html   200 
+# Redirect all routes to index.html for client-side routing
+/*    /index.html   200
+
+# Specific redirects for common routes
+/services    /index.html   200
+/services/itr    /index.html   200
+/services/gst    /index.html   200
+/services/tds    /index.html   200
+/services/tax-planning    /index.html   200
+/services/notice    /index.html   200
+/tax-calculator    /index.html   200
+/resources    /index.html   200
+/team    /index.html   200
+/contact    /index.html   200
+/partner-planning    /index.html   200
+
+# Handle 404 errors
+/404    /index.html   404 
