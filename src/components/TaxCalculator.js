@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Bar, Doughnut } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -64,7 +64,7 @@ const TaxCalculator = () => {
   const [results, setResults] = useState({});
 
   // Tax slabs for different years (Indian Tax System)
-  const taxSlabs = {
+  const taxSlabs = useMemo(() => ({
     '2025-26': {
       new: [
         { min: 0, max: 400000, rate: 0 },
@@ -135,7 +135,7 @@ const TaxCalculator = () => {
       ],
       standardDeduction: 50000
     }
-  };
+  }), []);
 
   // Calculate Income Tax based on selected year
   const calculateIncomeTax = useCallback(() => {
@@ -200,7 +200,7 @@ const TaxCalculator = () => {
       effectiveRate,
       year: selectedYear,
     };
-  }, [incomeData, selectedYear]);
+  }, [incomeData, selectedYear, taxSlabs]);
 
   // Calculate GST
   const calculateGST = useCallback(() => {
