@@ -70,7 +70,6 @@ const Header = () => {
             </div>
             <Link to="/resources" className="text-gray-600 hover:text-blue-600 font-medium transition">Resources</Link>
             <Link to="/tax-calculator" className="text-gray-600 hover:text-blue-600 font-medium transition">Tax Calculator</Link>
-            <Link to="/team" className="text-gray-600 hover:text-blue-600 font-medium transition">Team</Link>
             <Link to="/contact" className="text-gray-600 hover:text-blue-600 font-medium transition">Contact</Link>
             <Link 
               to="/partner-planning" 
@@ -123,12 +122,6 @@ const Header = () => {
                   className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition"
                 >
                   Tax Calculator
-                </button>
-                <button 
-                  onClick={() => handleNavigation('/team')} 
-                  className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition"
-                >
-                  Team
                 </button>
                 <button 
                   onClick={() => handleNavigation('/contact')} 

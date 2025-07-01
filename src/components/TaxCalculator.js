@@ -36,29 +36,18 @@ const TaxCalculator = () => {
     capitalGains: 0,
     otherSources: 0,
     age: 'below60',
-    regime: 'new',
+    regime: 'old',
     deductions: {
       hra: 0,
       lta: 0,
+      u80c: 0,
+      u80d: 0,
+      u80ccd1: 0,
+      u80ccd2: 0,
+      u80gg: 0,
       medical: 0,
-      nps: 0,
-      elss: 0,
-      homeLoan: 0,
-      insurance: 0,
       other: 0,
     },
-  });
-
-  const [gstData, setGstData] = useState({
-    turnover: 0,
-    category: 'regular',
-    state: 'interstate',
-  });
-
-  const [tdsData, setTdsData] = useState({
-    payment: 0,
-    category: 'salary',
-    pan: 'individual',
   });
 
   const [results, setResults] = useState({});
@@ -137,6 +126,27 @@ const TaxCalculator = () => {
     }
   }), []);
 
+  // Tax slabs for FY 2024-25 (Old Regime) by age
+  const oldRegimeSlabs = {
+    below60: [
+      { min: 0, max: 250000, rate: 0 },
+      { min: 250001, max: 500000, rate: 0.05 },
+      { min: 500001, max: 1000000, rate: 0.20 },
+      { min: 1000001, max: Infinity, rate: 0.30 }
+    ],
+    senior: [
+      { min: 0, max: 300000, rate: 0 },
+      { min: 300001, max: 500000, rate: 0.05 },
+      { min: 500001, max: 1000000, rate: 0.20 },
+      { min: 1000001, max: Infinity, rate: 0.30 }
+    ],
+    superSenior: [
+      { min: 0, max: 500000, rate: 0 },
+      { min: 500001, max: 1000000, rate: 0.20 },
+      { min: 1000001, max: Infinity, rate: 0.30 }
+    ]
+  };
+
   // Calculate Income Tax based on selected year
   const calculateIncomeTax = useCallback(() => {
     const totalIncome = 
@@ -145,23 +155,29 @@ const TaxCalculator = () => {
       incomeData.capitalGains + 
       incomeData.otherSources;
 
-    const currentSlabs = taxSlabs[selectedYear];
-    const totalDeductions = Object.values(incomeData.deductions).reduce((sum, val) => sum + val, 0);
-    
-    let taxableIncome;
-    if (incomeData.regime === 'new') {
-      // New Tax Regime - No deductions except standard deduction for salary
-      const standardDeduction = incomeData.salary > 0 ? currentSlabs.standardDeduction : 0;
-      taxableIncome = Math.max(0, totalIncome - standardDeduction);
-    } else {
-      // Old Tax Regime - All deductions allowed
-      const standardDeduction = incomeData.salary > 0 ? currentSlabs.standardDeduction : 0;
-      taxableIncome = Math.max(0, totalIncome - totalDeductions - standardDeduction);
-    }
+    // Deductions with limits
+    const ded80C = Math.min(incomeData.deductions.u80c, 150000);
+    const ded80D = incomeData.deductions.u80d;
+    const ded80CCD1 = Math.min(incomeData.deductions.u80ccd1, 50000);
+    const ded80CCD2 = incomeData.deductions.u80ccd2; // 10% of basic salary, user must enter correct value
+    const ded80GG = incomeData.deductions.u80gg;
+    const dedHRA = incomeData.deductions.hra;
+    const dedLTA = incomeData.deductions.lta;
+    const dedMedical = incomeData.deductions.medical;
+    const dedOther = incomeData.deductions.other;
+    const totalDeductions = ded80C + ded80D + ded80CCD1 + ded80CCD2 + ded80GG + dedHRA + dedLTA + dedMedical + dedOther;
 
+    // Standard deduction for salary
+    const standardDeduction = incomeData.salary > 0 ? 50000 : 0;
+    let taxableIncome = Math.max(0, totalIncome - totalDeductions - standardDeduction);
+
+    // Select correct slab by age
+    let slabs = oldRegimeSlabs.below60;
+    if (incomeData.age === 'senior') slabs = oldRegimeSlabs.senior;
+    if (incomeData.age === 'superSenior') slabs = oldRegimeSlabs.superSenior;
+
+    // Calculate tax
     let tax = 0;
-    const slabs = incomeData.regime === 'new' ? currentSlabs.new : currentSlabs.old;
-
     for (let i = 0; i < slabs.length; i++) {
       const slab = slabs[i];
       if (taxableIncome > slab.min) {
@@ -170,108 +186,47 @@ const TaxCalculator = () => {
       }
     }
 
-    // Calculate Surcharge
-    let surcharge = 0;
-    if (taxableIncome > 50000000) { // Above 50 lakhs
-      if (taxableIncome > 100000000) { // Above 1 crore
-        if (taxableIncome > 200000000) { // Above 2 crore
-          surcharge = tax * 0.25; // 25% surcharge
-        } else {
-          surcharge = tax * 0.15; // 15% surcharge
-        }
-      } else {
-        surcharge = tax * 0.10; // 10% surcharge
-      }
+    // Rebate u/s 87A
+    let rebate = 0;
+    if (taxableIncome <= 500000) {
+      rebate = Math.min(tax, 12500);
+      tax -= rebate;
     }
 
-    const cess = (tax + surcharge) * 0.04; // 4% Health and Education Cess
+    // Surcharge
+    let surcharge = 0;
+    if (taxableIncome > 5000000 && taxableIncome <= 10000000) surcharge = tax * 0.10;
+    else if (taxableIncome > 10000000 && taxableIncome <= 20000000) surcharge = tax * 0.15;
+    else if (taxableIncome > 20000000 && taxableIncome <= 50000000) surcharge = tax * 0.25;
+    else if (taxableIncome > 50000000) surcharge = tax * 0.37;
+
+    // Cess
+    const cess = (tax + surcharge) * 0.04;
     const totalTax = tax + surcharge + cess;
     const effectiveRate = totalIncome > 0 ? (totalTax / totalIncome) * 100 : 0;
 
     return {
       totalIncome,
       totalDeductions,
-      standardDeduction: incomeData.salary > 0 ? currentSlabs.standardDeduction : 0,
+      standardDeduction,
       taxableIncome,
       tax,
+      rebate,
       surcharge,
       cess,
       totalTax,
       effectiveRate,
-      year: selectedYear,
     };
-  }, [incomeData, selectedYear, taxSlabs]);
-
-  // Calculate GST
-  const calculateGST = useCallback(() => {
-    const turnover = gstData.turnover;
-    let gstRate = 0;
-    let cgst = 0;
-    let sgst = 0;
-    let igst = 0;
-
-    if (gstData.category === 'regular') {
-      gstRate = 0.18; // 18% GST
-    } else if (gstData.category === 'composition') {
-      gstRate = 0.01; // 1% for composition
-    }
-
-    const gstAmount = turnover * gstRate;
-
-    if (gstData.state === 'intrastate') {
-      cgst = gstAmount / 2;
-      sgst = gstAmount / 2;
-    } else {
-      igst = gstAmount;
-    }
-
-    return {
-      turnover,
-      gstRate: gstRate * 100,
-      gstAmount,
-      cgst,
-      sgst,
-      igst,
-    };
-  }, [gstData]);
-
-  // Calculate TDS
-  const calculateTDS = useCallback(() => {
-    const payment = tdsData.payment;
-    let tdsRate = 0;
-
-    if (tdsData.category === 'salary') {
-      tdsRate = 0.10; // 10% for salary
-    } else if (tdsData.category === 'professional') {
-      tdsRate = 0.10; // 10% for professional services
-    } else if (tdsData.category === 'rent') {
-      tdsRate = 0.10; // 10% for rent
-    } else if (tdsData.category === 'contractor') {
-      tdsRate = 0.01; // 1% for contractor
-    }
-
-    const tdsAmount = payment * tdsRate;
-
-    return {
-      payment,
-      tdsRate: tdsRate * 100,
-      tdsAmount,
-      netAmount: payment - tdsAmount,
-    };
-  }, [tdsData]);
+  }, [incomeData]);
 
   // Update results when data changes
   useEffect(() => {
     const incomeTaxResult = calculateIncomeTax();
-    const gstResult = calculateGST();
-    const tdsResult = calculateTDS();
 
     setResults({
       incomeTax: incomeTaxResult,
-      gst: gstResult,
-      tds: tdsResult,
     });
-  }, [calculateIncomeTax, calculateGST, calculateTDS]);
+  }, [calculateIncomeTax]);
 
   // Chart data for income tax breakdown
   const incomeTaxChartData = {
@@ -395,8 +350,6 @@ const TaxCalculator = () => {
         <div className="flex flex-wrap justify-center mb-8">
           {[
             { id: 'income', label: 'Income Tax', icon: '📊' },
-            { id: 'gst', label: 'GST Calculator', icon: '🏢' },
-            { id: 'tds', label: 'TDS Calculator', icon: '💼' },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -419,8 +372,6 @@ const TaxCalculator = () => {
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               {activeTab === 'income' && '📊 Income Tax Calculator'}
-              {activeTab === 'gst' && '🏢 GST Calculator'}
-              {activeTab === 'tds' && '💼 TDS Calculator'}
             </h2>
 
             {/* Income Tax Inputs */}
@@ -510,70 +461,56 @@ const TaxCalculator = () => {
                   </div>
                 </div>
 
+                {/* Age Selection */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Age Group</label>
+                  <select
+                    value={incomeData.age}
+                    onChange={e => setIncomeData({ ...incomeData, age: e.target.value })}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="below60">Below 60</option>
+                    <option value="senior">60-80 (Senior Citizen)</option>
+                    <option value="superSenior">Above 80 (Super Senior Citizen)</option>
+                  </select>
+                </div>
+
                 {/* Deductions (only for old regime) */}
                 {incomeData.regime === 'old' && (
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800 mb-4">Deductions</h3>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          HRA
-                        </label>
-                        <input
-                          type="number"
-                          value={incomeData.deductions.hra}
-                          onChange={(e) => setIncomeData({
-                            ...incomeData, 
-                            deductions: {...incomeData.deductions, hra: parseFloat(e.target.value) || 0}
-                          })}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="0"
-                        />
+                        <label className="block text-sm font-medium text-gray-700 mb-2">u/s 10 (HRA)</label>
+                        <input type="number" value={incomeData.deductions.hra} onChange={e => setIncomeData({ ...incomeData, deductions: { ...incomeData.deductions, hra: parseFloat(e.target.value) || 0 } })} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="0" />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          LTA
-                        </label>
-                        <input
-                          type="number"
-                          value={incomeData.deductions.lta}
-                          onChange={(e) => setIncomeData({
-                            ...incomeData, 
-                            deductions: {...incomeData.deductions, lta: parseFloat(e.target.value) || 0}
-                          })}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="0"
-                        />
+                        <label className="block text-sm font-medium text-gray-700 mb-2">u/s 10 (LTA)</label>
+                        <input type="number" value={incomeData.deductions.lta} onChange={e => setIncomeData({ ...incomeData, deductions: { ...incomeData.deductions, lta: parseFloat(e.target.value) || 0 } })} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="0" />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Medical Insurance
-                        </label>
-                        <input
-                          type="number"
-                          value={incomeData.deductions.medical}
-                          onChange={(e) => setIncomeData({
-                            ...incomeData, 
-                            deductions: {...incomeData.deductions, medical: parseFloat(e.target.value) || 0}
-                          })}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="0"
-                        />
+                        <label className="block text-sm font-medium text-gray-700 mb-2">u/s 80C (LIC, PPF, SSY, etc.)</label>
+                        <input type="number" value={incomeData.deductions.u80c} onChange={e => setIncomeData({ ...incomeData, deductions: { ...incomeData.deductions, u80c: parseFloat(e.target.value) || 0 } })} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="0 (max 1,50,000)" />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          NPS
-                        </label>
-                        <input
-                          type="number"
-                          value={incomeData.deductions.nps}
-                          onChange={(e) => setIncomeData({
-                            ...incomeData, 
-                            deductions: {...incomeData.deductions, nps: parseFloat(e.target.value) || 0}
-                          })}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="0"
-                        />
+                        <label className="block text-sm font-medium text-gray-700 mb-2">u/s 80D (Medical Insurance)</label>
+                        <input type="number" value={incomeData.deductions.u80d} onChange={e => setIncomeData({ ...incomeData, deductions: { ...incomeData.deductions, u80d: parseFloat(e.target.value) || 0 } })} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="0" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">u/s 80CCD(1) (NPS Self, max 50,000)</label>
+                        <input type="number" value={incomeData.deductions.u80ccd1} onChange={e => setIncomeData({ ...incomeData, deductions: { ...incomeData.deductions, u80ccd1: parseFloat(e.target.value) || 0 } })} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="0 (max 50,000)" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">u/s 80CCD(2) (NPS Employer, 10% of Basic Salary)</label>
+                        <input type="number" value={incomeData.deductions.u80ccd2} onChange={e => setIncomeData({ ...incomeData, deductions: { ...incomeData.deductions, u80ccd2: parseFloat(e.target.value) || 0 } })} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="0" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">u/s 80GG (Rent, if HRA not received)</label>
+                        <input type="number" value={incomeData.deductions.u80gg} onChange={e => setIncomeData({ ...incomeData, deductions: { ...incomeData.deductions, u80gg: parseFloat(e.target.value) || 0 } })} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="0" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Other Deductions</label>
+                        <input type="number" value={incomeData.deductions.other} onChange={e => setIncomeData({ ...incomeData, deductions: { ...incomeData.deductions, other: parseFloat(e.target.value) || 0 } })} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="0" />
                       </div>
                     </div>
                   </div>
@@ -594,86 +531,6 @@ const TaxCalculator = () => {
                       </div>
                     ))}
                   </div>
-                </div>
-              </div>
-            )}
-
-            {/* GST Inputs */}
-            {activeTab === 'gst' && (
-              <div className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Turnover Amount
-                  </label>
-                  <input
-                    type="number"
-                    value={gstData.turnover}
-                    onChange={(e) => setGstData({...gstData, turnover: parseFloat(e.target.value) || 0})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="0"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Category
-                  </label>
-                  <select
-                    value={gstData.category}
-                    onChange={(e) => setGstData({...gstData, category: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  >
-                    <option value="regular">Regular (18%)</option>
-                    <option value="composition">Composition (1%)</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Transaction Type
-                  </label>
-                  <select
-                    value={gstData.state}
-                    onChange={(e) => setGstData({...gstData, state: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  >
-                    <option value="intrastate">Intra-state</option>
-                    <option value="interstate">Inter-state</option>
-                  </select>
-                </div>
-              </div>
-            )}
-
-            {/* TDS Inputs */}
-            {activeTab === 'tds' && (
-              <div className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Payment Amount
-                  </label>
-                  <input
-                    type="number"
-                    value={tdsData.payment}
-                    onChange={(e) => setTdsData({...tdsData, payment: parseFloat(e.target.value) || 0})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="0"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Payment Category
-                  </label>
-                  <select
-                    value={tdsData.category}
-                    onChange={(e) => setTdsData({...tdsData, category: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  >
-                    <option value="salary">Salary</option>
-                    <option value="professional">Professional Services</option>
-                    <option value="rent">Rent</option>
-                    <option value="contractor">Contractor</option>
-                  </select>
                 </div>
               </div>
             )}
@@ -764,73 +621,6 @@ const TaxCalculator = () => {
                           },
                         }}
                       />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 'gst' && results.gst && (
-                <div className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-blue-50 p-4 rounded-lg">
-                      <div className="text-sm text-blue-600 font-medium">GST Rate</div>
-                      <div className="text-2xl font-bold text-blue-900">
-                        {results.gst.gstRate}%
-                      </div>
-                    </div>
-                    <div className="bg-green-50 p-4 rounded-lg">
-                      <div className="text-sm text-green-600 font-medium">GST Amount</div>
-                      <div className="text-2xl font-bold text-green-900">
-                        {formatCurrency(results.gst.gstAmount)}
-                      </div>
-                    </div>
-                    {gstData.state === 'intrastate' ? (
-                      <>
-                        <div className="bg-purple-50 p-4 rounded-lg">
-                          <div className="text-sm text-purple-600 font-medium">CGST</div>
-                          <div className="text-2xl font-bold text-purple-900">
-                            {formatCurrency(results.gst.cgst)}
-                          </div>
-                        </div>
-                        <div className="bg-orange-50 p-4 rounded-lg">
-                          <div className="text-sm text-orange-600 font-medium">SGST</div>
-                          <div className="text-2xl font-bold text-orange-900">
-                            {formatCurrency(results.gst.sgst)}
-                          </div>
-                        </div>
-                      </>
-                    ) : (
-                      <div className="bg-indigo-50 p-4 rounded-lg col-span-2">
-                        <div className="text-sm text-indigo-600 font-medium">IGST</div>
-                        <div className="text-2xl font-bold text-indigo-900">
-                          {formatCurrency(results.gst.igst)}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 'tds' && results.tds && (
-                <div className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-blue-50 p-4 rounded-lg">
-                      <div className="text-sm text-blue-600 font-medium">TDS Rate</div>
-                      <div className="text-2xl font-bold text-blue-900">
-                        {results.tds.tdsRate}%
-                      </div>
-                    </div>
-                    <div className="bg-red-50 p-4 rounded-lg">
-                      <div className="text-sm text-red-600 font-medium">TDS Amount</div>
-                      <div className="text-2xl font-bold text-red-900">
-                        {formatCurrency(results.tds.tdsAmount)}
-                      </div>
-                    </div>
-                    <div className="bg-green-50 p-4 rounded-lg col-span-2">
-                      <div className="text-sm text-green-600 font-medium">Net Amount</div>
-                      <div className="text-2xl font-bold text-green-900">
-                        {formatCurrency(results.tds.netAmount)}
-                      </div>
                     </div>
                   </div>
                 </div>

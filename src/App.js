@@ -11,7 +11,6 @@ import TaxPlanningServices from './components/services/TaxPlanningServices';
 import NoticeServices from './components/services/NoticeServices';
 import PartnerPlanning from './components/PartnerPlanning';
 import Contact from './components/contact/Contact';
-import Team from './components/team/Team';
 import Resources from './components/Resources';
 import TaxCalculator from './components/TaxCalculator';
 import NotFound from './components/NotFound';
@@ -69,7 +68,6 @@ function App() {
           <Route path="/tax-calculator" element={<TaxCalculator />} />
           <Route path="/partner-planning" element={<PartnerPlanning />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/team" element={<Team/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

@@ -43,83 +43,86 @@ const GSTServices = () => {
 
   const gstPlans = [
     {
-      title: 'GST Registration - New',
-      price: 'Starting from ₹999',
-      description: 'New GST registration for businesses',
+      title: 'GST Registration',
+      price: 'Starting from ₹3,499',
+      description: 'GST Application Filing, Clarification Response, One-time Modification',
       features: [
-        'GST Registration Application',
-        'Document Collection & Verification',
-        'Application Filing with GST Department',
-        'GSTIN Generation',
-        'Post Registration Support',
-        'Basic GST Advisory'
-      ]
+        'GST Application Filing',
+        'Clarification Response',
+        'One-time Modification',
+      ],
+      cta: 'Activate Now',
     },
     {
-      title: 'GST Registration - Premium',
-      price: 'Starting from ₹1,999',
-      description: 'Complete GST registration with additional benefits',
+      title: 'GST Compliance – Composition Dealer',
+      price: 'Starting from ₹6,000',
+      description: 'Quarterly CMP-08 Filing (Excludes Annual Return GSTR-4)',
       features: [
-        'Everything in Basic Plan',
-        'Priority Processing',
-        'Digital Signature Certificate (DSC)',
-        'GST Software Training',
-        '3 Months Free GST Return Filing',
-        'Extended Support Period'
-      ]
+        'Quarterly CMP-08 Filing',
+        'Excludes Annual Return (GSTR-4)',
+      ],
+      cta: 'Activate Now',
     },
     {
-      title: 'GST Return Filing - Basic',
-      price: 'Starting from ₹799/month',
-      description: 'Monthly GST return filing for small businesses',
+      title: 'Annual Return – Composition Dealer (GSTR-4)',
+      price: 'Starting from ₹8,000',
+      description: 'Filing of GSTR-4',
+      features: [
+        'Filing of GSTR-4',
+      ],
+      cta: 'Activate Now',
+    },
+    {
+      title: 'GST Compliance – Freelancers',
+      price: 'Starting from ₹12,000 yearly / ₹1,500 monthly',
+      description: 'GSTR-1 Filing, GSTR-3B Filing, ITC Reconciliation (Purchase Register vs GSTR-2A), Annual Return excluded',
       features: [
         'GSTR-1 Filing',
         'GSTR-3B Filing',
-        'Input Tax Credit Reconciliation',
-        'GST Payment Support',
-        'Return Filing Reminders',
-        'Basic GST Advisory'
-      ]
+        'ITC Reconciliation (Purchase Register vs GSTR-2A)',
+        'Annual Return excluded',
+      ],
+      cta: 'Activate Now',
     },
     {
-      title: 'GST Return Filing - Premium',
-      price: 'Starting from ₹1,499/month',
-      description: 'Comprehensive GST return filing with additional services',
+      title: 'GST Compliance – Traders & Online Sellers',
+      price: 'Starting from ₹24,000 yearly / ₹2,500 monthly',
+      description: 'GSTR-1 Filing, GSTR-3B Filing, ITC Reconciliation, Annual Return excluded',
       features: [
-        'Everything in Basic Plan',
-        'GSTR-2A Reconciliation',
-        'Monthly GST Reports',
-        'GST Audit Support',
-        'Priority Filing',
-        'Dedicated GST Expert'
-      ]
+        'GSTR-1 Filing',
+        'GSTR-3B Filing',
+        'ITC Reconciliation',
+        'Annual Return excluded',
+      ],
+      cta: 'Activate Now',
     },
     {
-      title: 'GST Annual Return',
-      price: 'Starting from ₹3,999',
-      description: 'Annual GST return filing (GSTR-9)',
+      title: 'Annual Return – Regular Dealer',
+      price: 'Starting from ₹15,000',
+      description: 'GSTR-9 Filing, GSTR-9C (Reconciliation Statement)',
       features: [
-        'GSTR-9 Preparation & Filing',
-        'Annual Reconciliation',
-        'Audit Support',
-        'Compliance Review',
-        'Annual GST Report',
-        'Expert Consultation'
-      ]
+        'GSTR-9 Filing',
+        'GSTR-9C (Reconciliation Statement)',
+      ],
+      cta: 'Activate Now',
     },
     {
-      title: 'GST Audit',
-      price: 'Starting from ₹7,999',
-      description: 'Complete GST audit services',
+      title: 'LUT Filing (Letter of Undertaking)',
+      price: 'Starting from ₹2,699',
+      description: 'Filing of LUT for Export/Zero-rated supply',
       features: [
-        'GSTR-9C Preparation',
-        'Detailed Reconciliation',
-        'Audit Report Generation',
-        'Compliance Review',
-        'Expert Consultation',
-        'Representation Support'
-      ]
-    }
+        'Filing of LUT for Export/Zero-rated supply',
+      ],
+      cta: 'Activate Now',
+    },
+  ];
+
+  const additionalGSTRServices = [
+    'GSTR-5 – For Non-Resident Taxable Persons',
+    'GSTR-6 – For Input Service Distributors (ISD)',
+    'GSTR-7 – TDS Return under GST',
+    'GSTR-8 – TCS Return under GST',
+    'GSTR-10 – Final Return (upon GST Registration Cancellation)',
   ];
 
   return (
@@ -139,25 +142,50 @@ const GSTServices = () => {
           {gstPlans.map((plan, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition"
+              className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition flex flex-col justify-between"
             >
-              <div className="p-8">
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">{plan.title}</h3>
-                <p className="text-gray-600 mb-4">{plan.description}</p>
-                <div className="text-3xl font-bold text-blue-600 mb-6">{plan.price}</div>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <svg className="h-5 w-5 text-green-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="p-8 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">{plan.title}</h3>
+                  <p className="text-gray-600 mb-4">{plan.description}</p>
+                  <div className="text-2xl font-bold text-blue-600 mb-6">{plan.price}</div>
+                  <ul className="space-y-3 mb-8">
+                    {plan.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <svg className="h-5 w-5 text-green-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-gray-600">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <a
+                  href="/contact"
+                  className="inline-block mt-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow text-center"
+                >
+                  {plan.cta}
+                </a>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Additional GSTR Filing Services */}
+        <div className="mt-16 bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+          <h3 className="text-2xl font-bold text-gray-800 mb-4">📦 Additional GSTR Filing Services (Quotation Based)</h3>
+          <p className="text-gray-600 mb-4">The following services are offered on a custom quotation depending on volume and complexity:</p>
+          <ul className="list-disc pl-6 text-gray-700 mb-4">
+            {additionalGSTRServices.map((service, idx) => (
+              <li key={idx}>{service}</li>
+            ))}
+          </ul>
+          <a
+            href="/contact"
+            className="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow text-center"
+          >
+            Contact us directly for a personalized quote
+          </a>
         </div>
 
         <div className="mt-16 bg-white rounded-xl p-8 shadow-lg">

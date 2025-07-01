@@ -2,90 +2,98 @@ import React from "react";
 
 const plans = [
   {
-    title: "Salary & House Property Plan",
-    price: "₹499",
-    originalPrice: "₹999",
+    title: "Salary + 1 House Property Plan",
+    price: "₹1,499",
     features: [
-      "✓ Salaried Income",
-      "✓ House Property Income",
-      "✓ Income from Other Sources",
-      "✓ Agriculture Income",
+      "Income from Single or Multiple Employers",
+      "One House Property",
+      "Income from Other Sources",
+      "Agricultural Income",
     ],
+    cta: "Get Started Now"
+  },
+  {
+    title: "Salary + Multiple House Properties Plan",
+    price: "₹1,799",
+    features: [
+      "Income from Single or Multiple Employers",
+      "More than One House Property",
+      "Income from Other Sources",
+      "Agricultural Income",
+    ],
+    cta: "Get Started Now"
   },
   {
     title: "Business & Professional Plan",
-    price: "₹1,299",
-    originalPrice: "₹1,999",
-    features: [
-      "✓ Salaried Income",
-      "✓ House Property Income",
-      "✓ Business & Professional Income (Non Audit)",
-      "✓ Income from Other Sources",
-      "✓ Agriculture Income",
-    ],
-  },
-  {
-    title: "Capital Gain Plan",
-    price: "₹1,499",
-    originalPrice: "₹2,249",
-    features: [
-      "✓ Salaried Income",
-      "✓ House Property Income",
-      "✓ Capital Gain Income",
-      "✓ Business & Professional Income (Non Audit)",
-      "✓ Income from Other Sources",
-      "✓ Agriculture Income",
-    ],
-  },
-  {
-    title: "Future & Options Plan",
-    price: "₹2,499",
-    originalPrice: "₹3,499",
-    features: [
-      "✓ F&O Income/Loss (Non Audit)",
-      "✓ Speculative Income",
-      "✓ Salaried Income",
-      "✓ House Property Income",
-      "✓ Capital Gain Income",
-      "✓ Business & Professional Income (Non Audit)",
-      "✓ Income from Other Sources",
-      "✓ Agriculture Income",
-    ],
-  },
-  {
-    title: "Crypto Currency Plan",
     price: "₹3,499",
-    originalPrice: "₹4,999",
     features: [
-      "✓ Crypto Income",
-      "✓ F&O Income/Loss (Non Audit)",
-      "✓ Speculative Income",
-      "✓ Salaried Income",
-      "✓ House Property Income",
-      "✓ Capital Gain Income",
-      "✓ Business & Professional Income (Non Audit)",
-      "✓ Income from Other Sources",
-      "✓ Agriculture Income",
+      "Salary + Multiple House Properties",
+      "Business or Professional Income (Non-Audit, without B/S & P&L)",
+      "Income from Other Sources",
+      "Agricultural Income",
     ],
+    cta: "Get Started Now"
   },
   {
-    title: "NRI/Resident Having Foreign Income",
+    title: "Capital Gains Plan",
     price: "₹3,999",
-    originalPrice: "₹5,999",
     features: [
-      "✓ Foreign Salary (Including Foreign Tax relief)",
-      "✓ DTAA Tax Relief",
-      "✓ Salaried Income",
-      "✓ House Property Income",
-      "✓ Capital Gain Income",
-      "✓ RSU/ESOP",
-      "✓ Business & Professional Income (Non Audit)",
-      "✓ Crypto Income",
-      "✓ F&O Income/Loss (Non Audit)",
-      "✓ Speculative Income",
-      "✓ Income from Other Sources",
-      "✓ Agriculture Income",
+      "Capital Gains (Shares, Mutual Funds, Property, etc.)",
+      "Salary + Multiple House Properties",
+      "Business or Professional Income (Non-Audit)",
+      "Income from Other Sources & Agriculture",
     ],
+    cta: "Get Started Now"
+  },
+  {
+    title: "Futures & Options (F&O) Plan",
+    price: "₹5,999",
+    features: [
+      "F&O Trading Income/Loss (Non-Audit)",
+      "Speculative Income",
+      "Salary + Multiple House Properties",
+      "Capital Gains",
+      "Business/Professional Income",
+      "Crypto & Agricultural Income",
+    ],
+    cta: "Get Started Now"
+  },
+  {
+    title: "Cryptocurrency Income Plan",
+    price: "₹5,999",
+    features: [
+      "Crypto Income",
+      "F&O & Speculative Income",
+      "Salary + Multiple House Properties",
+      "Capital Gains",
+      "Business/Professional Income",
+      "Other & Agricultural Income",
+    ],
+    cta: "Get Started Now"
+  },
+  {
+    title: "NRI Plan – Indian Income",
+    price: "₹5,999",
+    features: [
+      "NRIs with Indian Income (Salary, Rent, Capital Gains)",
+      "RSU/ESOP, Crypto, F&O, Speculative Income",
+      "Business/Professional Income",
+      "Agricultural & Other Income",
+    ],
+    cta: "Get Started Now"
+  },
+  {
+    title: "Resident with Foreign Income Plan",
+    price: "₹8,999",
+    features: [
+      "Foreign Salary with DTAA & Tax Relief",
+      "RSU/ESOP",
+      "Crypto, F&O, Speculative Income",
+      "Salary + Multiple House Properties",
+      "Capital Gains + Business/Professional Income",
+      "Agricultural & Other Income",
+    ],
+    cta: "Get Started Now"
   },
 ];
 
@@ -94,27 +102,35 @@ const ITRFilingPlans = () => {
     <section className="py-20 bg-gray-50" id="itr-filing-plans">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
-          Pricing Plans
+          ITR Filing Plans – Based on Your Income Profile
         </h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <p className="text-center text-gray-600 mb-10 text-lg">
+          Pricing starts from the amount mentioned below.
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {plans.map((plan, idx) => (
             <div
               key={idx}
-              className="bg-white border-2 border-green-700 rounded-xl p-6 shadow hover:shadow-xl transition"
+              className="bg-white border-2 border-green-700 rounded-xl p-6 shadow hover:shadow-xl transition flex flex-col justify-between"
             >
-              <h3 className="text-lg font-bold text-green-800 mb-2">
-                {plan.title}
-              </h3>
-              <p className="text-sm line-through text-gray-500">
-                {plan.originalPrice}
-              </p>
-              <p className="text-xl font-bold text-black mb-4">{plan.price} onwards</p>
-              <p className="text-sm font-semibold text-gray-700 mb-2">Appropriate for</p>
-              <ul className="text-sm text-gray-600 space-y-1">
-                {plan.features.map((feature, i) => (
-                  <li key={i}>{feature}</li>
-                ))}
-              </ul>
+              <div>
+                <h3 className="text-lg font-bold text-green-800 mb-2">
+                  {plan.title}
+                </h3>
+                <div className="text-2xl font-bold text-black mb-4">{plan.price} <span className="text-base font-normal text-gray-500">onwards</span></div>
+                <p className="text-sm font-semibold text-gray-700 mb-2">Ideal For:</p>
+                <ul className="text-sm text-gray-600 space-y-1 mb-6">
+                  {plan.features.map((feature, i) => (
+                    <li key={i}>✔ {feature}</li>
+                  ))}
+                </ul>
+              </div>
+              <a
+                href="/contact"
+                className="inline-block mt-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow text-center"
+              >
+                {plan.cta}
+              </a>
             </div>
           ))}
         </div>
