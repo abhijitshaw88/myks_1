@@ -25,14 +25,14 @@ const ITRServices = () => {
           {
             "@type": "Offer",
             "name": "Individual ITR - Basic",
-            "price": "799",
+            "price": "1499",
             "priceCurrency": "INR",
             "description": "Income Tax Return filing for salaried individuals"
           },
           {
             "@type": "Offer",
             "name": "Individual ITR - Premium",
-            "price": "1499",
+            "price": "2499",
             "priceCurrency": "INR",
             "description": "Comprehensive ITR filing for individuals with multiple income sources"
           }
@@ -44,7 +44,7 @@ const ITRServices = () => {
   const itrPlans = [
     {
       title: 'Individual ITR - Basic',
-      price: 'Starting from ₹799',
+      price: 'Starting from ₹1,499',
       description: 'Income Tax Return filing for salaried individuals',
       features: [
         'Income from Salary',
@@ -57,7 +57,7 @@ const ITRServices = () => {
     },
     {
       title: 'Individual ITR - Premium',
-      price: 'Starting from ₹1,499',
+      price: 'Starting from ₹2,499',
       description: 'Comprehensive ITR filing for individuals with multiple income sources',
       features: [
         'Everything in Basic Plan',
@@ -70,7 +70,7 @@ const ITRServices = () => {
     },
     {
       title: 'Business ITR - Basic',
-      price: 'Starting from ₹2,499',
+      price: 'Starting from ₹3,999',
       description: 'Income Tax Return filing for small businesses',
       features: [
         'Business Income',
@@ -83,7 +83,7 @@ const ITRServices = () => {
     },
     {
       title: 'Business ITR - Premium',
-      price: 'Starting from ₹3,999',
+      price: 'Starting from ₹4,999',
       description: 'Complete ITR solution for businesses with complex requirements',
       features: [
         'Everything in Basic Plan',
@@ -109,7 +109,7 @@ const ITRServices = () => {
     },
     {
       title: 'Tax Assessment Support',
-      price: 'Starting from ₹3,999',
+      price: 'Starting from ₹6,999',
       description: 'Support during income tax assessment',
       features: [
         'Assessment Preparation',

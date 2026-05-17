@@ -6,14 +6,9 @@ const Announcement = () => {
 
   const announcements = [
     {
-      icon: "📢",
-      text: "ITR Filing Deadline Extended!",
-      subtext: "CBDT extends due date for FY 2024–25 (AY 2025–26) from July 31 to September 15, 2025. File now to avoid penalties!"
-    },
-    {
       icon: "🔔",
-      text: "Important Update for Taxpayers – FY 2024–25",
-      subtext: "✅ ITR-1 (Sahaj), ITR-4 (Sugam), ITR-2 & ITR-3 now open for filing on the Income Tax Portal."
+      text: "Important Update for Taxpayers – FY 2025-26 & AY 2026-27",
+      subtext: "✅ ITR-1 (Sahaj) & ITR-4 (Sugam) EXCEL UTILITIES RELEASED 🚨 open for filing on the Income Tax Portal."
     },
     {
       icon: "⚡",
