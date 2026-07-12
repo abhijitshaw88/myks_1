@@ -93,6 +93,10 @@ const NoticeServices = () => {
 
         {/* Service Steps */}
         <div className="mb-16">
+          <div className="mb-8 rounded-xl border border-amber-200 bg-amber-50 p-6 text-center shadow-sm">
+            <h3 className="text-xl font-semibold text-amber-800">⚠️ Charges</h3>
+            <p className="mt-2 text-lg text-amber-700">Our handling charges start from ₹7,499.</p>
+          </div>
           <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">🔍 Our Notice Services Include:</h3>
           <div className="grid md:grid-cols-2 gap-8">
             {serviceSteps.map((step, index) => (
